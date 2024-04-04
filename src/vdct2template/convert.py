@@ -1,6 +1,5 @@
 import re
 from pathlib import Path
-from typing import List, Optional
 
 DROP = re.compile(r"#!.*\n")
 EXPAND = re.compile(r'expand\("(.*)" *, *([^\)]*)\) *{([\s\S]*?)}')
@@ -12,9 +11,9 @@ def convert(target: Path):
     text_out = text = target.read_text()
 
     # find and process any expand() blocks
-    matches = EXPAND.findall(text)
-    if matches:
-        for match in matches:
+    expands = EXPAND.findall(text)
+    if expands:
+        for match in expands:
             include_path = Path(match[0])
             include_path = include_path.with_suffix(".template")
             substitutes = macro2substitute(match[2], include_path, target.parent)
@@ -23,6 +22,9 @@ def convert(target: Path):
 
             text_out = EXPAND.sub(all, text_out, 1)
 
+    templates = TEMPLATE.findall(text)
+    # expanded template files are handled by macro2substitute
+    if not templates:
         write_template_file(target, text_out)
 
 
