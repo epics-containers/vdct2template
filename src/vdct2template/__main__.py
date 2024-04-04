@@ -44,7 +44,7 @@ def main(
 
     for target in targets:
         typer.echo(f"Converting {target} to template file.")
-        convert(target=target, verbose=verbose)
+        convert(target=target)
 
 
 # test with:

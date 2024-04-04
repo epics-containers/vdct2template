@@ -1,5 +1,6 @@
 import re
 from pathlib import Path
+from typing import List, Optional
 
 DROP = re.compile(r"#!.*\n")
 EXPAND = re.compile(r'expand\("(.*)" *, *([^\)]*)\) *{([\s\S]*?)}')
@@ -7,36 +8,43 @@ TEMPLATE = re.compile(r"template *\( *\) * {[\S\s]*?}")
 MACRO = re.compile(r" *macro *\(([^,]*),.*?(\$[^\)]*\)) *")
 
 
-def convert(target, verbose=False):
-    text = target.read_text()
-    text_out = text
+def convert(target: Path):
+    text_out = text = target.read_text()
 
     # find and process any expand() blocks
-    for match in EXPAND.finditer(text):
-        if verbose:
-            print(f"Found expand block named '{match.group(2)}'")
-            print(f"  macros: {match.group(3)}")
+    matches = EXPAND.findall(text)
+    if matches:
+        for match in matches:
+            include_path = Path(match[0])
+            include_path = include_path.with_suffix(".template")
+            substitutes = macro2substitute(match[2], include_path, target.parent)
+            include = f'include "{include_path}"'
+            all = "\n".join([substitutes, include])
 
-        substitutes = macro2substitute(match.group(3))
-        include_path = Path(match.group(1))
-        include_path = include_path.with_suffix(".template")
-        include = f'include "{include_path}"'
+            text_out = EXPAND.sub(all, text_out, 1)
 
-        all = "\n".join([substitutes, include])
+        write_template_file(target, text_out)
 
-        text_out = EXPAND.sub(all, text_out, 1)
 
-    # now remove redundant VDCT directives
+def write_template_file(target: Path, text_out: str):
+    # remove redundant VDCT directives
     text_out = DROP.sub("", text_out)
-    text_out = TEMPLATE.sub("", text_out)
+    text_out, n = TEMPLATE.subn("", text_out)
 
     new_file = target.with_suffix(".template")
     with new_file.open("w") as out_f:
         out_f.write(text_out)
 
 
-def macro2substitute(text):
-    text_out = ""
-    for match in MACRO.finditer(text):
-        text_out += f'substitute "{match.group(1)}={match.group(2)}"\n'
-    return text_out
+def macro2substitute(macro_text: str, include_path: Path, folder: Path):
+    substitutes_out = ""
+    vdb_file = folder / include_path
+    vdb_text = vdb_file.read_text()
+
+    for match in MACRO.finditer(macro_text):
+        # add underscore to template macro otherwise defaults don't get pushed down
+        substitutes_out += f'substitute "_{match.group(1)}={match.group(2)}"\n'
+        vdb_text = vdb_text.replace(f"$({match.group(1)})", f"$(_{match.group(1)})")
+
+    write_template_file(vdb_file.with_suffix(".template"), vdb_text)
+    return substitutes_out
