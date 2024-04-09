@@ -123,6 +123,8 @@ expand("dlsPLC_valveIlk.vdb", valveIlk) {
   macro(ilk13, "$(ilk13=unused)")
   macro(ilk14, "$(ilk14=unused)")
   macro(ilk15, "$(ilk15=unused)")
+  macro(vlvcc, "$(vlvcc)")
+  macro(device, "$(device)")
 }
 
 expand("dlsPLC_valveGilk.vdb", valveGilk) {

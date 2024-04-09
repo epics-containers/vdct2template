@@ -105,7 +105,7 @@ expand("dlsPLC_valveCtrl.vdb", valveCtrl) {
   macro(sta_label3, "$(sta_label3=Closed)")
   macro(sta_label4, "$(sta_label4=Closing)")
   macro(sta_label5, "$(sta_label5=)")
-  macro(sta_label6, "$(sta_label6=)")    
+  macro(sta_label6, "$(sta_label6=)")
   macro(donecalc,   "((A=D)&(((A*2+1)=B)|A=2|C=0))?0:1")
 }
 
@@ -133,12 +133,12 @@ record(mbbi, "$(device):STA") {
   field(SXVL, "6")
   field(NOBT, "3")
   field(SHFT, "4")
-  field(INP, "$(device):GETLASTCON.VAL CP MS")  
+  field(INP, "$(device):GETLASTCON.VAL CP MS")
 }
 
 # ###################################################################
 # Open Interlock Status
-# 
+#
 # % archiver 10 Monitor
 # % controldesk Open Interlock Status smon
 record(mbbi, "$(device):OPENILKSTA") {
@@ -152,12 +152,12 @@ record(mbbi, "$(device):OPENILKSTA") {
   field(ONSV, "NO_ALARM")
   field(NOBT, "1")
   field(SHFT, "2")
-  field(INP, "$(device):GETLASTCON.VAL CP MS")  
+  field(INP, "$(device):GETLASTCON.VAL CP MS")
 }
 
 # ###################################################################
 # Close Interlock Status
-# 
+#
 # % archiver 10 Monitor
 # % controldesk Close Interlock Status smon
 record(mbbi, "$(device):CLOSEILKSTA") {
@@ -171,7 +171,7 @@ record(mbbi, "$(device):CLOSEILKSTA") {
   field(ONSV, "NO_ALARM")
   field(NOBT, "1")
   field(SHFT, "3")
-  field(INP, "$(device):GETLASTCON.VAL CP MS")  
+  field(INP, "$(device):GETLASTCON.VAL CP MS")
 }
 
 # Override GETOPS to get data from $(addr)+2 instead of $(addr)+4
@@ -184,7 +184,7 @@ record(mbbiDirect, "$(device):MODSTA") {
   field(DTYP, "Raw Soft Channel")
   field(NOBT, "1")
   field(SHFT, "7")
-  field(INP, "$(device):GETLASTCON.VAL CP MS")    
+  field(INP, "$(device):GETLASTCON.VAL CP MS")
 }
 
 expand("dlsPLC_valveIlk.vdb", valveIlkOPEN) {
@@ -209,6 +209,8 @@ expand("dlsPLC_valveIlk.vdb", valveIlkOPEN) {
   macro(ilk13, "$(ilk13=unused)")
   macro(ilk14, "$(ilk14=unused)")
   macro(ilk15, "$(ilk15=unused)")
+  macro(vlvcc, "$(vlvcc)")
+  macro(device, "$(device)")
 }
 
 expand("dlsPLC_valveIlk.vdb", valveIlkCLOSE) {
@@ -233,6 +235,8 @@ expand("dlsPLC_valveIlk.vdb", valveIlkCLOSE) {
   macro(ilk13, "$(cilk13=unused)")
   macro(ilk14, "$(cilk14=unused)")
   macro(ilk15, "$(cilk15=unused)")
+  macro(vlvcc, "$(vlvcc)")
+  macro(device, "$(device)")
 }
 
 # Operational/Service Mode

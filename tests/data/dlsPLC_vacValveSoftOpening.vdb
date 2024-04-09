@@ -115,6 +115,8 @@ expand("dlsPLC_valveIlk.vdb", valveSoftIlk) {
   macro(ilk13, "$(softilk13=unused)")
   macro(ilk14, "$(softilk14=unused)")
   macro(ilk15, "$(softilk15=unused)")
+  macro(vlvcc, "$(vlvcc)")
+  macro(device, "$(device)")
 }
 expand("dlsPLC_valveIlk.vdb", valveFullIlk) {
   macro(DIR, "$(EMPTY=)")
@@ -138,6 +140,8 @@ expand("dlsPLC_valveIlk.vdb", valveFullIlk) {
   macro(ilk13, "$(fullilk13=unused)")
   macro(ilk14, "$(fullilk14=unused)")
   macro(ilk15, "$(fullilk15=unused)")
+  macro(vlvcc, "$(vlvcc)")
+  macro(device, "$(device)")
 }
 
 

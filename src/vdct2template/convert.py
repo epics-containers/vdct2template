@@ -11,14 +11,16 @@ def convert(folder: Path, builder_txt: str):
     warning = False
     targets = list(folder.glob("*.vdb"))
 
+    print(f"converting vdb files in {folder}\n ...")
+
     for target in targets:
         expansion = Expansion(target, folder)
         if expansion.parse_expands() > 0:
-            print(f"writing expansion {expansion.template_path}")
+            print(f"writing expansion {expansion.template_path.name}")
             expansion.template_path.write_text(expansion.text)
 
             for file, text in expansion.process_includes():
-                print(f"writing template {file}")
+                print(f"writing template {file.name}")
                 file.write_text(text)
                 if file.name in builder_txt:
                     warning = True
@@ -42,5 +44,5 @@ def convert(folder: Path, builder_txt: str):
     warning |= Expansion.validate_includes()
 
     if warning:
-        print("  WARNINGS DETECTED: check above for details.")
+        print("\n  WARNINGS DETECTED: check above for details.")
         exit(1)
