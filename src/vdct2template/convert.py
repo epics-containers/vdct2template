@@ -8,6 +8,7 @@ def convert(folder: Path, builder_txt: str):
     """
     function to oversee conversion of a set of VDB files to template files.
     """
+    warning = False
     targets = list(folder.glob("*.vdb"))
 
     for target in targets:
@@ -19,6 +20,9 @@ def convert(folder: Path, builder_txt: str):
             for file, text in expansion.process_includes():
                 print(f"writing template {file}")
                 file.write_text(text)
+                if file.name in builder_txt:
+                    warning = True
+                    print(f"  WARNING: direct reference from builder.py to {file.name}")
 
     # process the remaining (flat) vdbs
     all_vdb_files = {target.name for target in targets}
@@ -35,4 +39,8 @@ def convert(folder: Path, builder_txt: str):
         template_path.write_text(text)
 
     # give warnings if there are inconsistent macro substitutions
-    Expansion.validate_includes()
+    warning |= Expansion.validate_includes()
+
+    if warning:
+        print("  WARNINGS DETECTED: check above for details.")
+        exit(1)

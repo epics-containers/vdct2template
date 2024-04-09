@@ -71,13 +71,14 @@ class Expansion:
                 Expansion.processed.append(include.vdb_path.name)
 
     @classmethod
-    def validate_includes(cls):
+    def validate_includes(cls) -> bool:
         """
         Check that all included files are always using the same substitutions
         every time they are included. If not then the the replacing of macro
         names with _ prefix will be inconsistent between uses of the included
         templates and this approach will fail.
         """
+        warning = False
         index: Dict[str, Macros] = {}
 
         print()
@@ -86,8 +87,9 @@ class Expansion:
                 if include.template_path.name in index:
                     original = index[include.template_path.name]
                     if include.compare(original):
+                        warning = True
                         print(
-                            f"WARNING: inconsistent macros for "
+                            f"  WARNING: inconsistent macros for "
                             f"{include.template_path.name}"
                         )
                         print(
@@ -100,3 +102,5 @@ class Expansion:
                         )
                 else:
                     index[include.template_path.name] = include
+
+        return warning
