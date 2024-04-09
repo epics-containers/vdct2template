@@ -9,7 +9,7 @@ from .convert import convert
 __all__ = ["main"]
 
 
-cli = typer.Typer()
+cli = typer.Typer(rich_markup_mode="markdown")
 
 
 def version_callback(value: bool):
@@ -47,29 +47,28 @@ def main(
     ),
 ):
     """
-    VDCT to template conversion function.
+    ### VDCT to template conversion function.
 
-    Converts all VDCT files in the folder to template files.
-
-    This function assumes that all referenced VDCT files in the expand() blocks
+    - This function assumes that all referenced VDCT files in the expand() blocks
     will be in the same folder.
 
-    We can use the builder.py file to check for direct references to template files
+    - We can use the builder.py file to check for direct references to template files
     Use --no-use-builder to disable this feature. Direct references to a template
     file is an error because we need to modify all macro names to add a _ prefix
     in templated files.
 
-    This tool converts VDCT files to template files. It looks for expand() blocks
-    in the VDCT files. If these are found then it will also convert all of the
-    referenced files to template files. In referenced files the macro names will
-    all have _ prefix added because MSI does not support substituting a macro with
+    - Files referenced in expand() blocks will have their macro names updated to
+    all have a _ prefix, because MSI does not support substituting a macro with
     it's own name and passing a default. This is a workaround to that limitation.
 
-    The original expands() block is replaced with a series of substitute
-    and include MSI directives.
+    - The original expands() block is replaced with a series of substitute
+    MSI directives and an include MSI directive.
 
-    The resulting set of templates can be expanded natively by MSI without the
-    need for VDCT. The resulting DB files should be equivalent to the original.
+    - The resulting set of templates can be expanded natively by MSI without the
+    need for VDCT.
+
+    - The DB files created by such an expansion should be equivalent to the
+    original VDCT generated ones.
     """
 
     if use_builder:
