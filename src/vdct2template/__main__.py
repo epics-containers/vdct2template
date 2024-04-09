@@ -28,19 +28,16 @@ def main(
         is_eager=True,
         help="Print the version and exit",
     ),
-    targets: List[Path] = typer.Argument(
+    folder: Path = typer.Argument(
         ...,
-        help="list of vdb files to convert to template files.",
+        help="folder of vdb files to convert to template files.",
         exists=True,
-        dir_okay=False,
+        file_okay=False,
         resolve_path=True,
     ),
     use_builder: bool = typer.Option(
         True,
         help="Use the builder.py file to look for direct references to template files.",
-    ),
-    verbose: bool = typer.Option(
-        False, "--verbose", "-v", help="Print more information."
     ),
     builder: Optional[Path] = typer.Option(
         None,
@@ -53,9 +50,7 @@ def main(
     """
     VDCT to template conversion function.
 
-    Converts all passed VDCT files to template files. Recommended invocation
-    is to pass all VDCT files for a support module in a single call using
-    a glob pattern.
+    Converts all VDCT files in the folder to template files.
 
     This function assumes that all referenced VDCT files in the expand() blocks
     will be in the same folder.
@@ -79,14 +74,12 @@ def main(
     """
 
     if use_builder:
-        builder = builder or Path(
-            targets[0].parent.parent.parent / "etc" / "builder.py"
-        )
+        builder = builder or Path(folder.parent.parent / "etc" / "builder.py")
         builder_txt = builder.read_text()
     else:
         builder_txt = ""
 
-    convert(targets, builder_txt)
+    convert(folder, builder_txt)
 
 
 # test with:

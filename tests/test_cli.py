@@ -24,7 +24,7 @@ def test_convert():
 
     cmd = [
         "--no-use-builder",
-        *list(map(str, data.glob("*.vdb"))),
+        str(data),
     ]
     runner.invoke(cli, cmd)
 

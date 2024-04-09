@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Dict, List
 
 from vdct2template.macros import Macros
@@ -17,12 +18,12 @@ class Expansion:
     # class level list of all vdb files processed so far
     processed: List[str] = []
 
-    def __init__(self, filename) -> None:
+    def __init__(self, filename: Path, folder: Path) -> None:
         """
         Constructor: set up properties
         """
         self.vdb_path = filename.resolve()
-        self.folder = filename.parent
+        self.folder = folder
         self.template_path = filename.with_suffix(".template")
         self.includes = []
         self.text = filename.read_text()
