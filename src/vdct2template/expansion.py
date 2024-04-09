@@ -1,8 +1,10 @@
 import re
 from pathlib import Path
-from typing import List
+from typing import Dict, List
 
 from vdct2template.macros import Macros
+
+from .globals import DROP
 
 EXPAND = re.compile(r'expand\("(.*)" *, *([^\)]*)\) *{([\s\S]*?)}')
 
@@ -46,10 +48,41 @@ class Expansion:
         for match in expands:
             # match: 0=include path, 1=name, 2=macro text
             include_path = Path(match[0])
-            macros = Macros(include_path, match[2])
-            self.includes.append((include_path, macros))
+            macros = Macros(self.template_filename, include_path, match[2])
+            self.includes.append(macros)
 
             # replace the expands() block with the MSI directives
             self.text = EXPAND.sub(macros.render_include(), self.text, 1)
+        self.text = DROP.sub("", self.text)
 
         return len(expands)
+
+    @classmethod
+    def validate_includes(cls):
+        """
+        Check that all included files are always using the same substitutions
+        every time they are included. If not then the the replacing of macro
+        names with _ prefix will be inconsistent between uses of the included
+        templates and this approach will fail.
+        """
+        index: Dict[str, Macros] = {}
+
+        for expansion in cls.Expansions:
+            for include in expansion.includes:
+                if include.template_filename.name in index:
+                    original = index[include.template_filename.name]
+                    if include.compare(original):
+                        print(
+                            f"WARNING: inconsistent macros for "
+                            f"{include.template_filename.name}"
+                        )
+                        print(
+                            f"  {original.parent.name} missing:"
+                            f"{original.missing_str(original)}"
+                        )
+                        print(
+                            f"  {include.parent.name} missing: "
+                            f"{include.missing_str(original)}"
+                        )
+                else:
+                    index[include.template_filename.name] = include

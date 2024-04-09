@@ -3,8 +3,6 @@ from pathlib import Path
 
 from .expansion import Expansion
 
-# all redundant VDB header info starts with #!
-DROP = re.compile(r"#!.*\n")
 # template blocks are also redundant
 TEMPLATE = re.compile(r"template *\( *\) * {[\S\s]*?}")
 
@@ -13,6 +11,8 @@ def convert(target: Path, tmp_dir: Path, builder_txt: str):
     expansion = Expansion(target)
     if expansion.parse_expands() > 0:
         expansion.template_filename.write_text(expansion.text)
+
+    Expansion.validate_includes()
 
     # find and process any expand() blocks
     # expands = EXPAND.findall(text)

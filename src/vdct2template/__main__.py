@@ -78,8 +78,13 @@ def main(
     need for VDCT. The resulting DB files should be equivalent to the original.
     """
 
-    builder = builder or Path(targets[0].parent.parent.parent / "etc" / "builder.py")
-    builder_txt = builder.read_text()
+    if use_builder:
+        builder = builder or Path(
+            targets[0].parent.parent.parent / "etc" / "builder.py"
+        )
+        builder_txt = builder.read_text()
+    else:
+        builder_txt = ""
 
     tmp_dir = Path(TemporaryDirectory().name)
 
@@ -88,6 +93,6 @@ def main(
 
 
 # test with:
-#     pipenv run python -m ibek
+#  python -m vdct2template --version
 if __name__ == "__main__":
     typer.run(main)
