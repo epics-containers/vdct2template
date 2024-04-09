@@ -52,7 +52,7 @@ class Macros:
         for name, value in self.macros.items():
             include += f'substitute "_{name}={value}"\n'
 
-        include += f'\ninclude "{self.template_path}"\n'
+        include += f'\ninclude "{self.template_path.name}"\n'
 
         return include
 

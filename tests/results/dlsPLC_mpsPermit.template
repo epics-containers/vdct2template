@@ -35,7 +35,7 @@ substitute "_ilk13=$(ilk13=unused)"
 substitute "_ilk14=$(ilk14=unused)"
 substitute "_ilk15=$(ilk15=unused)"
 
-include "/workspaces/vdct2template/tests/data/dlsPLC_valveIlk.template"
+include "dlsPLC_valveIlk.template"
 
 
 
