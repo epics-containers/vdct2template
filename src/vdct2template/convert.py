@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from .expansion import Expansion
+from .regex import DROP
 
 
 def convert(folder: Path, builder_txt: str):
@@ -19,11 +20,19 @@ def convert(folder: Path, builder_txt: str):
                 print(f"writing template {file}")
                 file.write_text(text)
 
-    Expansion.validate_includes()
-
-    # make a set of all names of all vdb files
+    # process the remaining (flat) vdbs
     all_vdb_files = {target.name for target in targets}
-
     unprocessed = all_vdb_files - set(Expansion.processed)
+
     for file in unprocessed:
-        pass
+        path = folder / file
+        template_path = path.with_suffix(".template")
+
+        text = path.read_text()
+        text = DROP.sub("", text)
+
+        print(f"writing flat {file}")
+        template_path.write_text(text)
+
+    # give warnings if there are inconsistent macro substitutions
+    Expansion.validate_includes()

@@ -77,7 +77,7 @@ substitute "_sta_label5=$(sta_label5=)"
 substitute "_sta_label6=$(sta_label6=)"
 substitute "_donecalc=((A=D)&(((A*2+1)=B)|A=2|C=0))?0:1"
 
-include "dlsPLC_valveCtrl.template"
+include "/workspaces/vdct2template/tests/data/dlsPLC_valveCtrl.template"
 
 
 substitute "_DIR=$(EMPTY=)"
@@ -102,7 +102,7 @@ substitute "_ilk13=$(ilk13=unused)"
 substitute "_ilk14=$(ilk14=unused)"
 substitute "_ilk15=$(ilk15=unused)"
 
-include "dlsPLC_valveIlk.template"
+include "/workspaces/vdct2template/tests/data/dlsPLC_valveIlk.template"
 
 
 # Operational/Service Mode

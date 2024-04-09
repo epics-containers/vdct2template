@@ -31,7 +31,9 @@ def test_convert():
     # verify all vdb got a template conversion and that the template looks right
     results = (Path(__file__).parent / "results").resolve()
     for vdb in data.glob("*.vdb"):
-        assert (vdb.with_suffix(".template")).exists(), f"{vdb.name} not converted"
-        assert (vdb.with_suffix(".template")).read_text() == (
-            results / vdb.name
-        ).read_text(), f"{vdb.name} not conversion does not match expected result"
+        template = vdb.with_suffix(".template")
+        valid_template = results / template.name
+        assert template.exists(), f"{vdb.name} not converted"
+        assert (
+            template.read_text() == valid_template.read_text()
+        ), f"{vdb.name} not conversion does not match expected result"

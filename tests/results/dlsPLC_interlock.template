@@ -27,7 +27,7 @@
 # % macro, ilk15, Interlock description 15
 # % macro, auto_reset, Set to 1 to push the reset button whenever the raw interlocks are all ok
 # % macro, EMPTY, Empty substitution to satisfy VDCT
-# 
+#
 # This associates an edm screen with the template
 # % gui, $(name=), edm, dlsPLC_interlock.edl, device=$(device)$(interlock)
 # % gui, $(name=), edmembed, dlsPLC_interlock-embed-small.edl, device=$(device)$(interlock),desc=$(desc)
@@ -82,7 +82,7 @@ substitute "_ilk13=$(ilk13=unused)"
 substitute "_ilk14=$(ilk14=unused)"
 substitute "_ilk15=$(ilk15=unused)"
 
-include "dlsPLC_valveIlk.template"
+include "/workspaces/vdct2template/tests/data/dlsPLC_valveIlk.template"
 
 
 
