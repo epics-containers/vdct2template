@@ -132,6 +132,8 @@ substitute "_ilk12=$(ilk12=unused)"
 substitute "_ilk13=$(ilk13=unused)"
 substitute "_ilk14=$(ilk14=unused)"
 substitute "_ilk15=$(ilk15=unused)"
+substitute "_vlvcc=$(vlvcc)"
+substitute "_device=$(device)"
 
 include "dlsPLC_valveIlk.template"
 
@@ -153,8 +155,8 @@ record(bi, "$(device):MODE") {
 
 # #########################################################################
 # Which interlocks to show on gui
-# 
-record(bi, "$(device):SHOWILK") 
+#
+record(bi, "$(device):SHOWILK")
   {
   field(DESC, "Which interlocks to display")
   field(DTYP, "Soft Channel")

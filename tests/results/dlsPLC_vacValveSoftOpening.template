@@ -111,6 +111,8 @@ substitute "_ilk12=$(softilk12=unused)"
 substitute "_ilk13=$(softilk13=unused)"
 substitute "_ilk14=$(softilk14=unused)"
 substitute "_ilk15=$(softilk15=unused)"
+substitute "_vlvcc=$(vlvcc)"
+substitute "_device=$(device)"
 
 include "dlsPLC_valveIlk.template"
 
@@ -135,6 +137,8 @@ substitute "_ilk12=$(fullilk12=unused)"
 substitute "_ilk13=$(fullilk13=unused)"
 substitute "_ilk14=$(fullilk14=unused)"
 substitute "_ilk15=$(fullilk15=unused)"
+substitute "_vlvcc=$(vlvcc)"
+substitute "_device=$(device)"
 
 include "dlsPLC_valveIlk.template"
 

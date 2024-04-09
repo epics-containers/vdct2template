@@ -112,6 +112,8 @@ substitute "_ilk12=$(ilk12=unused)"
 substitute "_ilk13=$(ilk13=unused)"
 substitute "_ilk14=$(ilk14=unused)"
 substitute "_ilk15=$(ilk15=unused)"
+substitute "_vlvcc=$(vlvcc)"
+substitute "_device=$(device)"
 
 include "dlsPLC_valveIlk.template"
 
@@ -133,8 +135,8 @@ record(bi, "$(device):MODE") {
 
 # #########################################################################
 # Which interlocks to show on gui
-# 
-record(bi, "$(device):SHOWILK") 
+#
+record(bi, "$(device):SHOWILK")
   {
   field(DESC, "Which interlocks to display")
   field(DTYP, "Soft Channel")
@@ -146,15 +148,15 @@ record(bi, "$(device):SHOWILK")
 
 # #########################################################################
 # How many interlocks for Full and Partial Arm
-# 
-record(ai, "$(device):FARMBITS") 
+#
+record(ai, "$(device):FARMBITS")
   {
   field(DESC, "Number of Full Arm interlocks")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
   field(INP, "$(farmbits=16)")
   }
-record(ai, "$(device):PARMBITS") 
+record(ai, "$(device):PARMBITS")
   {
   field(DESC, "Number of Partial Arm interlocks")
   field(DTYP, "Soft Channel")
@@ -162,7 +164,7 @@ record(ai, "$(device):PARMBITS")
   field(INP, "$(parmbits=16)")
   }
 
-  
+
 # #########################################################################
 # Override :DONECALC in dlsPLC_valveCtrl.template
 # as fe fast valve does not follow standard valve CON/LASTCON/STA pattern.
@@ -171,12 +173,12 @@ record(ai, "$(device):PARMBITS")
 # continue.
 #
 # IJG: 9th Dec. 2013
-# 
-#record(calcout, "$(device):DONECALC") 
+#
+#record(calcout, "$(device):DONECALC")
 #    {
 #    field(CALC, "1=1?0:1")
 #    }
-  
+
 
 
 

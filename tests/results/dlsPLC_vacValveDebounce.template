@@ -135,6 +135,8 @@ substitute "_ilk12=$(ilk12=unused)"
 substitute "_ilk13=$(ilk13=unused)"
 substitute "_ilk14=$(ilk14=unused)"
 substitute "_ilk15=$(ilk15=unused)"
+substitute "_vlvcc=$(vlvcc)"
+substitute "_device=$(device)"
 
 include "dlsPLC_valveIlk.template"
 
@@ -274,7 +276,7 @@ record(ao, "$(device):OUTTIMEOUT") {
 }
 
 # INDX calculation DM$(addr)+n. Calc the index into the century record
-#record(calcout, "$(device):INPTIMEOUTINDX") 
+#record(calcout, "$(device):INPTIMEOUTINDX")
 #  {
 #  field(CALC, "0")
 #  field(OUT, "$(device):INPTIMEOUT.INDX PP")
@@ -282,7 +284,7 @@ record(ao, "$(device):OUTTIMEOUT") {
 #  }
 
 # DX00
-record(subArray, "$(device):INPTIMEOUT") 
+record(subArray, "$(device):INPTIMEOUT")
   {
   field(DTYP, "Soft Channel")
   field(FTVL, "USHORT")
@@ -294,18 +296,18 @@ record(subArray, "$(device):INPTIMEOUT")
 # addr is the valve (device) number x10
 # the ADB and timeouts are in centuries corresponding to
 # device number (1XX, 2XX, etc.)
-# 
-# Calculate the 
+#
+# Calculate the
 # century record. Needs to be done after PINI, so note
 # the flnk
-record(scalcout, "$(device):SCALCCENTURY") 
+record(scalcout, "$(device):SCALCCENTURY")
   {
   field(CALC, "PRINTF(AA,FLOOR($(addr)/10))")
   field(AA, "$(vlvcc):DM%dXX CP MS")
   field(OUT, "$(device):INPTIMEOUT.INP CA")
   field(SCAN, "1 second")
   }
-  
+
 # Disable the scalcout record so we don't keep writing values
 record(ao, "$(device):CENTURYDIS")
   {

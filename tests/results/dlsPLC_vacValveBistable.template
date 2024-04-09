@@ -130,12 +130,12 @@ record(mbbi, "$(device):STA") {
   field(SXVL, "6")
   field(NOBT, "3")
   field(SHFT, "4")
-  field(INP, "$(device):GETLASTCON.VAL CP MS")  
+  field(INP, "$(device):GETLASTCON.VAL CP MS")
 }
 
 # ###################################################################
 # Open Interlock Status
-# 
+#
 # % archiver 10 Monitor
 # % controldesk Open Interlock Status smon
 record(mbbi, "$(device):OPENILKSTA") {
@@ -149,12 +149,12 @@ record(mbbi, "$(device):OPENILKSTA") {
   field(ONSV, "NO_ALARM")
   field(NOBT, "1")
   field(SHFT, "2")
-  field(INP, "$(device):GETLASTCON.VAL CP MS")  
+  field(INP, "$(device):GETLASTCON.VAL CP MS")
 }
 
 # ###################################################################
 # Close Interlock Status
-# 
+#
 # % archiver 10 Monitor
 # % controldesk Close Interlock Status smon
 record(mbbi, "$(device):CLOSEILKSTA") {
@@ -168,7 +168,7 @@ record(mbbi, "$(device):CLOSEILKSTA") {
   field(ONSV, "NO_ALARM")
   field(NOBT, "1")
   field(SHFT, "3")
-  field(INP, "$(device):GETLASTCON.VAL CP MS")  
+  field(INP, "$(device):GETLASTCON.VAL CP MS")
 }
 
 # Override GETOPS to get data from $(addr)+2 instead of $(addr)+4
@@ -181,7 +181,7 @@ record(mbbiDirect, "$(device):MODSTA") {
   field(DTYP, "Raw Soft Channel")
   field(NOBT, "1")
   field(SHFT, "7")
-  field(INP, "$(device):GETLASTCON.VAL CP MS")    
+  field(INP, "$(device):GETLASTCON.VAL CP MS")
 }
 
 substitute "_DIR=OPEN"
@@ -205,6 +205,8 @@ substitute "_ilk12=$(ilk12=unused)"
 substitute "_ilk13=$(ilk13=unused)"
 substitute "_ilk14=$(ilk14=unused)"
 substitute "_ilk15=$(ilk15=unused)"
+substitute "_vlvcc=$(vlvcc)"
+substitute "_device=$(device)"
 
 include "dlsPLC_valveIlk.template"
 
@@ -230,6 +232,8 @@ substitute "_ilk12=$(cilk12=unused)"
 substitute "_ilk13=$(cilk13=unused)"
 substitute "_ilk14=$(cilk14=unused)"
 substitute "_ilk15=$(cilk15=unused)"
+substitute "_vlvcc=$(vlvcc)"
+substitute "_device=$(device)"
 
 include "dlsPLC_valveIlk.template"
 
