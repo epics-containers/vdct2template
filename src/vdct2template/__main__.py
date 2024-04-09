@@ -1,6 +1,5 @@
 from pathlib import Path
-from tempfile import TemporaryDirectory
-from typing import List, Optional
+from typing import Optional
 
 import typer
 
