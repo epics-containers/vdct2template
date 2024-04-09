@@ -1,9 +1,8 @@
 from __future__ import annotations
 
-import re
 from pathlib import Path
 
-MACRO = re.compile(r' *macro *\(([^,]*), *"([^"]*) *')
+from .regex import DROP, MACRO, TEMPLATE
 
 
 class Macros:
@@ -23,8 +22,8 @@ class Macros:
             macros_text: the text of the macro substitutions in the expands() block.
         """
         self.parent = parent
-        self.vdb_filename = filename
-        self.template_filename = filename.with_suffix(".template")
+        self.vdb_path = filename
+        self.template_path = filename.with_suffix(".template")
         self.macros: dict[str, str] = {}
 
         for match in MACRO.finditer(macros_text):
@@ -53,7 +52,7 @@ class Macros:
         for name, value in self.macros.items():
             include += f'substitute "_{name}={value}"\n'
 
-        include += f'\ninclude "{self.template_filename}"\n'
+        include += f'\ninclude "{self.template_path}"\n'
 
         return include
 
@@ -67,7 +66,7 @@ class Macros:
 
     def missing_str(self, other: Macros) -> str:
         """
-        Print the differences between this set of macro substitutions and another set.
+        Return a string listing the macro names missing from other that are in self.
         """
         missing = []
 
@@ -76,3 +75,19 @@ class Macros:
                 missing.append(name)
 
         return ", ".join(missing)
+
+    def process(self):
+        """
+        Process this set of macro substitutions into a template file.
+
+        This means adding a _ prefix to  all macros that are referenced
+        """
+        text = self.vdb_path.read_text()
+        for name in self.macros.keys():
+            text = text.replace(f"${name}", f"$_{name}")
+
+        # remove redundant VDB things
+        text = DROP.sub("", text)
+        text = TEMPLATE.sub("", text)
+
+        return self.template_path, text

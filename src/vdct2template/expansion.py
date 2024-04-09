@@ -1,12 +1,8 @@
-import re
-from pathlib import Path
 from typing import Dict, List
 
 from vdct2template.macros import Macros
 
-from .globals import DROP
-
-EXPAND = re.compile(r'expand\("(.*)" *, *([^\)]*)\) *{([\s\S]*?)}')
+from .regex import DROP, EXPAND
 
 
 class Expansion:
@@ -17,18 +13,21 @@ class Expansion:
     """
 
     # class level list of all Expansion instances created
-    Expansions: List["Expansion"] = []
+    expansions: List["Expansion"] = []
+    # class level list of all vdb files processed so far
+    processed: List[str] = []
 
     def __init__(self, filename) -> None:
         """
         Constructor: set up properties
         """
-        self.vdb_filename = filename
-        self.template_filename = filename.with_suffix(".template")
+        self.vdb_path = filename.resolve()
+        self.folder = filename.parent
+        self.template_path = filename.with_suffix(".template")
         self.includes = []
         self.text = filename.read_text()
 
-        Expansion.Expansions.append(self)
+        Expansion.expansions.append(self)
 
     def parse_expands(self) -> int:
         """
@@ -47,15 +46,28 @@ class Expansion:
 
         for match in expands:
             # match: 0=include path, 1=name, 2=macro text
-            include_path = Path(match[0])
-            macros = Macros(self.template_filename, include_path, match[2])
+            include_path = self.folder / match[0]
+            macros = Macros(self.template_path, include_path, match[2])
             self.includes.append(macros)
 
             # replace the expands() block with the MSI directives
             self.text = EXPAND.sub(macros.render_include(), self.text, 1)
+
+        # remove other extraneous VDB things
         self.text = DROP.sub("", self.text)
 
+        self.processed.append(self.vdb_path.name)
+
         return len(expands)
+
+    def process_includes(self):
+        """
+        Process the included files for this VDB file.
+        """
+        for include in self.includes:
+            if include.vdb_path.name not in Expansion.processed:
+                yield include.process()
+                Expansion.processed.append(include.vdb_path.name)
 
     @classmethod
     def validate_includes(cls):
@@ -67,22 +79,23 @@ class Expansion:
         """
         index: Dict[str, Macros] = {}
 
-        for expansion in cls.Expansions:
+        print()
+        for expansion in cls.expansions:
             for include in expansion.includes:
-                if include.template_filename.name in index:
-                    original = index[include.template_filename.name]
+                if include.template_path.name in index:
+                    original = index[include.template_path.name]
                     if include.compare(original):
                         print(
                             f"WARNING: inconsistent macros for "
-                            f"{include.template_filename.name}"
+                            f"{include.template_path.name}"
                         )
                         print(
-                            f"  {original.parent.name} missing:"
-                            f"{original.missing_str(original)}"
+                            f"  {include.parent.name} missing:"
+                            f"{original.missing_str(include)}"
                         )
                         print(
-                            f"  {include.parent.name} missing: "
+                            f"  {original.parent.name} missing: "
                             f"{include.missing_str(original)}"
                         )
                 else:
-                    index[include.template_filename.name] = include
+                    index[include.template_path.name] = include

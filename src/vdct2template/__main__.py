@@ -86,10 +86,7 @@ def main(
     else:
         builder_txt = ""
 
-    tmp_dir = Path(TemporaryDirectory().name)
-
-    for target in targets:
-        convert(target=target, tmp_dir=tmp_dir, builder_txt=builder_txt)
+    convert(targets, builder_txt)
 
 
 # test with:
