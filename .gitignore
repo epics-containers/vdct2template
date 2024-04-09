@@ -68,3 +68,6 @@ lockfiles/
 
 # ruff cache
 .ruff_cache/
+
+# generated files in tests
+tests/data/*.template
