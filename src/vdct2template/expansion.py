@@ -32,9 +32,9 @@ class Expansion:
 
     def parse_expands(self) -> int:
         """
-        Parse the expands() blocks in the VDB file.
+        Parse an expands() blocks in a VDB file.
 
-        Updates the class attribute substitutions with the macro substitutions parsed.
+        Updates the class attribute 'substitutions' with the macro substitutions parsed.
         Updates the class attribute text with the VDB file text with the expands()
         blocks processed into MSI substitute/include statements.
 
@@ -50,6 +50,7 @@ class Expansion:
             include_path = self.folder / match[0]
             macros = Macros(self.template_path, include_path, match[2])
             self.includes.append(macros)
+            self._normalise_macros(macros)
 
             # replace the expands() block with the MSI directives
             self.text = EXPAND.sub(macros.render_include(), self.text, 1)
@@ -61,9 +62,32 @@ class Expansion:
 
         return len(expands)
 
+    def _normalise_macros(self, macros: Macros):
+        """
+        Given a set of macros for a given expand block, search for all other
+        instances of an expand against the same template file.
+
+        Make sure that this set of macros is consistent with all other instances
+        by adding in a self referencing macro for any missing ones out of the list
+        of all macros passed by all instances of such an expansion. (OMLGG!)
+        """
+        vdb_list = self.folder.glob("*.vdb")
+        for vdb in vdb_list:
+            vdb_text = vdb.read_text()
+            expands = EXPAND.findall(vdb_text)
+            for match in expands:
+                # match: 0=include path, 1=name, 2=macro text
+                if match[0] == macros.vdb_path.name:
+                    other_macros = Macros(self.template_path, macros.vdb_path, match[2])
+                    for macro in other_macros.macros:
+                        if macro not in macros.macros:
+                            print(f"adding missing {macro} to {macros.parent.name}")
+                            macros.macros[macro] = f"$({macro})"
+
     def process_includes(self):
         """
-        Process the included files for this VDB file.
+        Process the included files for this VDB file. Returns a generator of
+        tuples of the file and the text to write to the file.
         """
         for include in self.includes:
             if include.vdb_path.name not in Expansion.processed:
@@ -77,6 +101,9 @@ class Expansion:
         every time they are included. If not then the the replacing of macro
         names with _ prefix will be inconsistent between uses of the included
         templates and this approach will fail.
+
+        NOTE: with the introduction of _normalise_macros() this should not be
+        necessary but it is left in for now as a backup check.
         """
         warning = False
         index: Dict[str, Macros] = {}
