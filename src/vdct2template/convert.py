@@ -41,6 +41,7 @@ def convert(folder: Path, builder_txt: str):
         template_path.write_text(text)
 
     # give warnings if there are inconsistent macro substitutions
+    # NOTE: process_includes() should have already fixed this!
     warning |= Expansion.validate_includes()
 
     if warning:
