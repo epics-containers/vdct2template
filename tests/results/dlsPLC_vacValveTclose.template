@@ -92,4 +92,3 @@ record(calc, "$(device):TRESP")
   field(HSV, "$(tclose_hsv=NO_ALARM)")
   field(HHSV, "$(tclose_hhsv=NO_ALARM)")
   }
-

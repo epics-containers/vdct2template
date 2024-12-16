@@ -16,5 +16,3 @@ substitute "_TAGIDX=$(tagidx)"
 substitute "_has_debounce=0"
 
 include "NX102_readWord.template"
-
-

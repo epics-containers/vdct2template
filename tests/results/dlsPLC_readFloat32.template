@@ -28,5 +28,3 @@ record(waveform, "$(P)$(Q):GET") {
   field(FTVL, "FLOAT")
   field(PRIO, "MEDIUM")
 }
-
-

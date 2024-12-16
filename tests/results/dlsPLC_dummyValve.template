@@ -94,4 +94,3 @@ record(mbbi, "$(device):ILKSTA") {
   field(FRSV, "$(ilksta_sv4=NO_ALARM)")
   field(FVSV, "$(ilksta_sv5=NO_ALARM)")
 }
-

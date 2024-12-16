@@ -161,4 +161,3 @@ substitute "_longdesc=$(longdesc=Manipulator Position Port $(posportID) status.)
 substitute "_shortdesc=$(shortdesc=Posport$(posportID))"
 
 include "NX102_PreVacCoils_SMPortPositionStatus.template"
-

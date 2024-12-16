@@ -239,17 +239,3 @@ record(ao, "$(device):TARGETPINPDIS")
   field(VAL, "1")
   field(OUT, "$(device):TARGETPINP.DISA")
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

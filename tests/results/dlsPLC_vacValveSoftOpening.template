@@ -202,6 +202,3 @@ substitute "_vlvcc=$(vlvcc)"
 substitute "_addr=$(addr)"
 
 include "dlsPLC_valveIlk.template"
-
-
-

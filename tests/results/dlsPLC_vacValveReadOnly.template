@@ -89,4 +89,3 @@ record(ao, "$(device):STAINPDIS") {
   field(VAL, "1")
   field(OUT, "$(device):STAINP.DISA")
 }
-

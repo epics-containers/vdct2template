@@ -267,4 +267,3 @@ record(ao, "$(device)$(typeprefix)$(DIR)RAWILKINPDIS") {
   field(VAL, "1")
   field(OUT, "$(device)$(typeprefix)$(DIR)RAWILKINP.DISA")
 }
-

@@ -192,10 +192,3 @@ record(bi, "$(device):SHOWILK")
   field(ZNAM, "Gauge")
   field(ONAM, "Arm")
   }
-
-
-
-
-
-
-

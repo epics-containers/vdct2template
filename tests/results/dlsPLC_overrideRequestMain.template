@@ -64,4 +64,3 @@ record(longout, "$(P)$(Q):WRITEINTERLOCKS") {
   field(DTYP, "asynInt32")
   field(OUT, "@asyn($(port), $(outaddr), $(timeout=0)) FINS_DM_WRITE")  
 }
-

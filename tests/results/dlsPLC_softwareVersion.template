@@ -33,4 +33,3 @@ record(longin, "$(device):SOFTWARE") {
   field(DTYP, "Soft Channel")
   field(INP, "$(device):INPSOFT CP MS")
 }
-

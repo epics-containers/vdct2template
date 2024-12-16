@@ -403,10 +403,3 @@ record(subArray, "$(device):GETIRVAC") {
   field(INP, "$(vlvcc):DM0XX CP MS")
   field(MALM, "100")
 }
-
-
-
-
-
-
-

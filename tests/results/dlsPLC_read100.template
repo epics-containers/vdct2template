@@ -20,4 +20,3 @@ record(waveform, "$(device):DM$(century)XX") {
 template() {
 
   }
-

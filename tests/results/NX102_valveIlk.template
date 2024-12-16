@@ -467,4 +467,3 @@ record(calcout, "$(device)$(typeprefix)$(DIR)LATILKCALC") {
   field(OOPT, "Every Time")
   field(DOPT, "Use CALC")
 }
-

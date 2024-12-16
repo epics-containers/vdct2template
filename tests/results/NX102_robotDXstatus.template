@@ -135,4 +135,3 @@ record(stringout, "$(P)$(Q):B15") {
   field(DESC, "$(labelF=unused)")
   field(SCAN, "Passive")
 }
-

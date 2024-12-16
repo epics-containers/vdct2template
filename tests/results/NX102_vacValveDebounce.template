@@ -254,14 +254,3 @@ record(ai, "$(device):INPTIMEOUT") {
   field(ADEL, "0.1")
   field(PREC, "1")
 }
-
-
-
-
-
-
-
-
-
-
-

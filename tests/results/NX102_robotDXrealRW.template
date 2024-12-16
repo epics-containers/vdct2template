@@ -43,4 +43,3 @@ record(ai, "$(device)$(variable)_RBV") {
   field(PREC, "$(prec=2)")
   field(INP, "@$(port) $(tagread)")
 }
-

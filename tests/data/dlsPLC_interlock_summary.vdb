@@ -362,4 +362,3 @@ expand("dlsPLC_interlock_check.vdb", check24) {
 #! TemplateInstance("check24",4700,2660,0,"")
 #! TemplateField("check24","ilk",16777215,0,1)
 #! TemplateField("check24","N",16777215,0,1)
-

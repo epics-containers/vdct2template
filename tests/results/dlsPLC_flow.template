@@ -146,4 +146,3 @@ record(calc, "$(P)$(Q):STATUS") {
   field(LLSV, "MAJOR")
   field(LSV, "MINOR")
 }
-

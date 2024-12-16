@@ -254,4 +254,3 @@ record(calcout, "$(device):MOVN") {
   field(CALC, "A=2|A=4")
   field(INPA, "$(device):STA CP")
 }
-

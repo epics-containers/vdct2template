@@ -198,5 +198,3 @@ expand("dlsPLC_valveIlk.vdb", valveFullIlk) {
   macro(ilk14, "$(fullilk14=unused)")
   macro(ilk15, "$(fullilk15=unused)")
 }
-
-

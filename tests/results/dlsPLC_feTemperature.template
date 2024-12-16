@@ -237,4 +237,3 @@ record(calcout, "$(device)$(temp):LIMITINDX") {
   field(OUT, "$(device)$(temp):GETLIMIT.INDX PP")
   field(PINI, "YES")
 }
-

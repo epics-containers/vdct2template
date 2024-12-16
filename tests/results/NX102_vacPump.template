@@ -185,8 +185,3 @@ record(bi, "$(device):PLUG") {
   field(ZSV, "$(short_sv0=NO_ALARM)")
   field(OSV, "$(short_sv1=NO_ALARM)")
 }
-
-
-
-
-

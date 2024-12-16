@@ -84,7 +84,3 @@ substitute "_ilk15=$(ilk15=unused)"
 substitute "_addr=$(addr)"
 
 include "dlsPLC_valveIlk.template"
-
-
-
-

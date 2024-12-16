@@ -30,4 +30,3 @@ record(ao, "$(P)$(Q)") {
   field(DRVL, "$(drvl=0)")
   field(DRVH, "$(drvh=0)")
 }
-

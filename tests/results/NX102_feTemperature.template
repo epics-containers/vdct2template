@@ -236,4 +236,3 @@ record(calcout, "$(device)$(temp):GETCALC") {
 record(bo, "$(device)$(temp):HASOFFSET") {
   field(VAL, "0")
 }
-

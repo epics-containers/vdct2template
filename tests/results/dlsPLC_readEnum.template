@@ -77,4 +77,3 @@ record(mbbi, "$(P)$(Q)") {
   field(SXST, "$(STR6=)")
   field(SVST, "$(STR7=)")
 }
-

@@ -244,4 +244,3 @@ record(bi, "$(device):GILK15") {
   field(ZNAM, "$(gilk15=unused)")
   field(ONAM, "$(gilk15=unused)")
 }
-

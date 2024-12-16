@@ -164,13 +164,3 @@ record(ai, "$(device):MODE:INP") {
   field(SCAN, "1 second")
   field(FLNK, "$(device):MODE")
 }
-
-
-
-
-
-
-
-
-
-

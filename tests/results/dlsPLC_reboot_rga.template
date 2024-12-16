@@ -21,4 +21,3 @@ record(bo, "$(device):REBOOTEN") {
   field(ONAM, "Enabled")
   field(VAL, "0")
 }
-

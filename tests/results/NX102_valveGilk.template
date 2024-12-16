@@ -434,4 +434,3 @@ record(sseq, "$(device):GILK15:FAN") {
   field(DOL2, "$(device):GILK15:DESC")
   field(LNK2, "$(device):GILK15.ONAM")
 }
-

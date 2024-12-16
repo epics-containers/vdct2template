@@ -486,7 +486,3 @@ record(calcout, "$(device):PROGRESS") {
   field(HOPR, "100")
   field(LOPR, "0")
 }
-
-
-
-

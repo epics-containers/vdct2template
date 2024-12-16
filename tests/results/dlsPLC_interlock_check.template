@@ -10,4 +10,3 @@ record(calc, "$(device):ILK:CHECK$(N)") {
   field(INPA, "$(device):$(ilk):ILK CP")
   field(INPB, "$(device):ILK:OK-VALUE CP")
 }
-

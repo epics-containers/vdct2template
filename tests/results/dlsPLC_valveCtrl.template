@@ -364,4 +364,3 @@ record(ao, "$(device):MODSTAINPDIS") {
   field(VAL, "1")
   field(OUT, "$(device):MODSTAINP.DISA")
 }
-

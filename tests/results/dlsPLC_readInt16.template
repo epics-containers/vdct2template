@@ -47,5 +47,3 @@ record(subArray, "$(P)$(Q):GET") {
 record(longin, "$(P)$(Q)") {
   field(INP, "$(P)$(Q):GET MS")
 }
-
-

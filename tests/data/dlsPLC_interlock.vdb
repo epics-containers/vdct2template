@@ -115,4 +115,3 @@ expand("dlsPLC_valveIlk.vdb", valveIlk) {
 #! TemplateField("valveIlk","ilk2",16777215,0,1)
 #! TemplateField("valveIlk","ilk1",16777215,0,1)
 #! TemplateField("valveIlk","ilk0",16777215,0,1)
-

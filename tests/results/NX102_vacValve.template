@@ -207,12 +207,3 @@ record(ai, "$(device):POSITION") {
   field(ADEL, "0.1")
   field(PREC, "1")
 }
-
-
-
-
-
-
-
-
-

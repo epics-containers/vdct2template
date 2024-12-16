@@ -102,7 +102,3 @@ substitute "_typeprefix="
 substitute "_DIR=$(interlock):"
 
 include "NX102_valveIlk.template"
-
-
-
-

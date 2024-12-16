@@ -740,4 +740,3 @@ record(stringout, "$(device)$(lvdtprefix=:LVDT)$(lvdtID):LONGDESC") {
   field(PINI, "YES")
   field(VAL, "$(lvdt_longdesc=Manipulator LVDT $(lvdtID))")
 }
-

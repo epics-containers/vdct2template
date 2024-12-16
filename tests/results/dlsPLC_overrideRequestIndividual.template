@@ -56,4 +56,3 @@ record(ao, "$(P):SETPOINT") {
   field(DTYP, "Soft Channel")
   field(VAL, "$(SETPOINT)")
 }
-

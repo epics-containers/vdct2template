@@ -799,4 +799,3 @@ record(bi, "$(device):GILK15") {
   field(ZNAM, "Gauge ILK 15")
   field(ONAM, "Gauge ILK 15")
 }
-

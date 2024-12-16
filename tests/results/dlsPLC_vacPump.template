@@ -155,10 +155,3 @@ record(bi, "$(device):PLUG") {
   field(ZNAM, "Dummy")
   field(ONAM, "Real")
 }
-
-
-
-
-
-
-

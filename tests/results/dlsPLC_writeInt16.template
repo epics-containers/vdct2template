@@ -19,4 +19,3 @@ record(ao, "$(P)$(Q)") {
   field(OUT, "@asyn($(port), $(addr), $(timeout=0)) FINS_DM_WRITE")
   field(PRIO, "HIGH")
 }
-

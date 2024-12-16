@@ -250,4 +250,3 @@ record(fanout, "$(device)$(temp):GETLIMIT:FAN") {
   field(LNK1, "$(device)$(temp)")
   field(LNK2, "$(device)$(temp):GETCALC")
 }
-

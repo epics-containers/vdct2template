@@ -104,5 +104,3 @@ record(ai, "$(device):PSU:TEMPERATURE") {
     field(ASLO, "0.1")    
     field(PREC, "1")    
 }
-
-

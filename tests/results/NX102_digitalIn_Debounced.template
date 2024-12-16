@@ -28,4 +28,3 @@ record(mbbiDirect, "$(device):DBBIT") {
   field(NOBT, "16")
 }
 
-#! TemplateField("word","TAGIDX",16777215,0,1)

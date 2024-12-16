@@ -68,4 +68,3 @@ record(ai, "$(device):CDUR") {
   field(INP, "@$(port) $(tag).Last_Close_Duration[$(tagidx)]")
   field(EGU, "s")
 }
-

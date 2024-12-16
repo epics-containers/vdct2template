@@ -137,9 +137,3 @@ record(bi, "$(device):MODE") {
   field(ZNAM, "$(mode1=Operational)")
   field(ONAM, "$(mode2=Service)")
 }
-
-
-
-
-
-
