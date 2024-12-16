@@ -25,14 +25,15 @@ record(mbbo, "$(device):CON") {
   field(OUT, "$(device):CALCCON.A PP")
 }
 
-record(seq, "$(device):OPENSEQ"){
+record(seq, "$(device):OPENSEQ") {
   field(LNK1, "$(device):CON PP")
   field(LNK2, "$(device):CON PP")
-  field(DO1, "2") # reset
-  field(DO2, "0") # open
+  field(DO1, "2")
+# reset
+  field(DO2, "0")
+# open
   field(DLY2, "1")
 }
-
 
 ## If this PV is non-zero then an open request will be allowed by 
 # $(device):CALCCON
@@ -69,8 +70,7 @@ record(ao, "$(device):ACTUALCON") {
   field(FLNK, "$(device):SETBUSY")
 }
 
-record(bi, "$(device):OPENING") 
-{
+record(bi, "$(device):OPENING") {
   field(DESC, "Opening Valves")
   field(PINI, "YES")
   field(INP, "0")
@@ -152,14 +152,18 @@ record(ao, "$(device):LASTCONINPDIS") {
 record(mbbi, "$(device):ILKSTA") {
   field(DESC, "Interlock Status")
   field(DTYP, "Soft Channel")
-  field(ZRST, "Failed")
-  field(ONST, "Run Ilks OK")
-  field(TWST, "OK")
-  field(THST, "Disarmed")
-  field(ZRSV, "MAJOR")
-  field(ONSV, "NO_ALARM")
-  field(TWSV, "NO_ALARM")
-  field(THSV, "NO_ALARM")
+  field(ZRST, "$(ilksta_label0=Failed)")
+  field(ONST, "$(ilksta_label1=Run Ilks Ok)")
+  field(TWST, "$(ilksta_label2=OK)")
+  field(THST, "$(ilksta_label3=Disarmed)")
+  field(FRST, "$(ilksta_label4=)")
+  field(FVST, "$(ilksta_label5=)")
+  field(ZRSV, "$(ilksta_sv0=MAJOR)")
+  field(ONSV, "$(ilksta_sv1=NO_ALARM)")
+  field(TWSV, "$(ilksta_sv2=NO_ALARM)")
+  field(THSV, "$(ilksta_sv3=NO_ALARM)")
+  field(FRSV, "$(ilksta_sv4=NO_ALARM)")
+  field(FVSV, "$(ilksta_sv5=NO_ALARM)")
   field(INP, "$(device):GETILKSTA.VAL MS")
 }
 
@@ -196,14 +200,14 @@ record(ao, "$(device):ILKSTAINPDIS") {
   field(OUT, "$(device):ILKSTAINP.DISA")
 }
 
-# #########################################################################
+# ######################################################################
 # Status
 # 
 # % archiver 10 Monitor
 # % controldesk Status smon
 # This makes the component icon reflect the status
 # % gui, $(name=), sevr
-#% gdatag,mbbinary,ro,$(gda_name=),STA
+# % gdatag,mbbinary,ro,$(gda_name=),STA
 record(mbbi, "$(device):STA") {
   field(DESC, "Status")
   field(DTYP, "Soft Channel")
@@ -214,13 +218,13 @@ record(mbbi, "$(device):STA") {
   field(FRST, "$(sta_label4)")
   field(FVST, "$(sta_label5)")
   field(SXST, "$(sta_label6)")
-  field(ZRSV, "MAJOR")
-  field(ONSV, "NO_ALARM")
-  field(TWSV, "NO_ALARM")
-  field(THSV, "NO_ALARM")
-  field(FRSV, "NO_ALARM")
-  field(FVSV, "NO_ALARM")
-  field(SXSV, "NO_ALARM")
+  field(ZRSV, "$(sta_sv0)")
+  field(ONSV, "$(sta_sv1)")
+  field(TWSV, "$(sta_sv2)")
+  field(THSV, "$(sta_sv3)")
+  field(FRSV, "$(sta_sv4)")
+  field(FVSV, "$(sta_sv5)")
+  field(SXSV, "$(sta_sv6)")
   field(INP, "$(device):GETSTA MS")
 }
 

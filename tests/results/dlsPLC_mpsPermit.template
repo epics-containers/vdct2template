@@ -34,8 +34,9 @@ substitute "_ilk12=$(ilk12=unused)"
 substitute "_ilk13=$(ilk13=unused)"
 substitute "_ilk14=$(ilk14=unused)"
 substitute "_ilk15=$(ilk15=unused)"
-substitute "_vlvcc=$(vlvcc)"
 substitute "_device=$(device)"
+substitute "_vlvcc=$(vlvcc)"
+substitute "_addr=$(addr)"
 
 include "dlsPLC_valveIlk.template"
 
@@ -88,7 +89,7 @@ record(bi, "$(device):MODE")
     field(ONAM, "Service")
 }
 
-record(subArray, "$(device):GETSTA")
+record(subArray, "$(device):GETSTA") 
 {
   field(DESC, "Get status")
   field(DTYP, "Soft Channel")
@@ -97,19 +98,19 @@ record(subArray, "$(device):GETSTA")
   field(MALM, "100")
 }
 
-# STA is in DM$(addr)+2. Calc the index into the
+# STA is in DM$(addr)+2. Calc the index into the 
 # century record
-record(calcout, "$(device):STAINDX")
+record(calcout, "$(device):STAINDX") 
 {
   field(CALC, "$(addr)%100+2")
   field(OUT, "$(device):GETSTA.INDX PP")
   field(PINI, "YES")
 }
 
-# STA is in DM$(addr)+3. Calc the inp link to the
+# STA is in DM$(addr)+3. Calc the inp link to the 
 # century record. Needs to be done after PINI, so note
 # the flnk
-record(scalcout, "$(device):STAINP")
+record(scalcout, "$(device):STAINP") 
 {
   field(CALC, "PRINTF(AA,FLOOR($(addr)/100))")
   field(AA, "$(vlvcc):DM%dXX CP MS")
@@ -119,14 +120,14 @@ record(scalcout, "$(device):STAINP")
 }
 
 # Disable the scalcout record so we don't keep writing values
-record(ao, "$(device):STAINPDIS")
+record(ao, "$(device):STAINPDIS") 
 {
   field(VAL, "1")
   field(OUT, "$(device):STAINP.DISA")
 }
 
 
-record(subArray, "$(device):GETMODSTA")
+record(subArray, "$(device):GETMODSTA") 
 {
   field(DESC, "Get mode")
   field(DTYP, "Soft Channel")
@@ -135,19 +136,19 @@ record(subArray, "$(device):GETMODSTA")
   field(MALM, "100")
 }
 
-# STA is in DM$(addr)+5. Calc the index into the
+# STA is in DM$(addr)+5. Calc the index into the 
 # century record
-record(calcout, "$(device):MODSTAINDX")
+record(calcout, "$(device):MODSTAINDX") 
 {
   field(CALC, "$(addr)%100+5")
   field(OUT, "$(device):GETMODSTA.INDX PP")
   field(PINI, "YES")
 }
 
-# STA is in DM$(addr)+5. Calc the inp link to the
+# STA is in DM$(addr)+5. Calc the inp link to the 
 # century record. Needs to be done after PINI, so note
 # the flnk
-record(scalcout, "$(device):MODSTAINP")
+record(scalcout, "$(device):MODSTAINP") 
 {
   field(CALC, "PRINTF(AA,FLOOR($(addr)/100))")
   field(AA, "$(vlvcc):DM%dXX CP MS")
@@ -157,7 +158,7 @@ record(scalcout, "$(device):MODSTAINP")
 }
 
 # Disable the scalcout record so we don't keep writing values
-record(ao, "$(device):MODSTAINPDIS")
+record(ao, "$(device):MODSTAINPDIS") 
 {
   field(VAL, "1")
   field(OUT, "$(device):MODSTAINP.DISA")

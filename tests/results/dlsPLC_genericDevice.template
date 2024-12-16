@@ -39,6 +39,13 @@
 #% macro, sta_label4, Label string for status value 4 (Optional - defaults to Closing)
 #% macro, sta_label5, Label string for status value 5 (Optional - defaults to "")
 #% macro, sta_label6, Label string for status value 6 (Optional - defaults to "")
+#% macro, sta_sv0, Optional. Defaults to MAJOR.     Alarm severity for status value 0.
+#% macro, sta_sv1, Optional. Defaults to NO_ALARM.  Alarm severity for status value 1.
+#% macro, sta_sv2, Optional. Defaults to NO_ALARM.  Alarm severity for status value 2.
+#% macro, sta_sv3, Optional. Defaults to NO_ALARM.  Alarm severity for status value 3.
+#% macro, sta_sv4, Optional. Defaults to NO_ALARM.  Alarm severity for status value 4.
+#% macro, sta_sv5, Optional. Defaults to NO_ALARM.  Alarm severity for status value 5.
+#% macro, sta_sv6, Optional. Defaults to NO_ALARM.  Alarm severity for status value 6.
 #% macro, name, Object name and associated gui name
 #% macro, gda_name, GDA name to export to gda as if it exists
 #% macro, gda_desc, GDA description
@@ -67,7 +74,26 @@ substitute "_sta_label3=$(sta_label3=Off)"
 substitute "_sta_label4=$(sta_label4=)"
 substitute "_sta_label5=$(sta_label5=)"
 substitute "_sta_label6=$(sta_label6=)"
+substitute "_sta_sv0=$(sta_sv0=MAJOR)"
+substitute "_sta_sv1=$(sta_sv1=NO_ALARM)"
+substitute "_sta_sv2=$(sta_sv2=NO_ALARM)"
+substitute "_sta_sv3=$(sta_sv3=NO_ALARM)"
+substitute "_sta_sv4=$(sta_sv4=NO_ALARM)"
+substitute "_sta_sv5=$(sta_sv5=NO_ALARM)"
+substitute "_sta_sv6=$(sta_sv6=NO_ALARM)"
 substitute "_donecalc=((A=D)&(((A*2+1)=B)|A=2|C=0))?0:1"
+substitute "_ilksta_label0=$(ilksta_label0)"
+substitute "_ilksta_label1=$(ilksta_label1)"
+substitute "_ilksta_label2=$(ilksta_label2)"
+substitute "_ilksta_label3=$(ilksta_label3)"
+substitute "_ilksta_label4=$(ilksta_label4)"
+substitute "_ilksta_label5=$(ilksta_label5)"
+substitute "_ilksta_sv0=$(ilksta_sv0)"
+substitute "_ilksta_sv1=$(ilksta_sv1)"
+substitute "_ilksta_sv2=$(ilksta_sv2)"
+substitute "_ilksta_sv3=$(ilksta_sv3)"
+substitute "_ilksta_sv4=$(ilksta_sv4)"
+substitute "_ilksta_sv5=$(ilksta_sv5)"
 
 include "dlsPLC_valveCtrl.template"
 
@@ -93,8 +119,9 @@ substitute "_ilk12=$(ilk12=unused)"
 substitute "_ilk13=$(ilk13=unused)"
 substitute "_ilk14=$(ilk14=unused)"
 substitute "_ilk15=$(ilk15=unused)"
-substitute "_vlvcc=$(vlvcc)"
 substitute "_device=$(device)"
+substitute "_vlvcc=$(vlvcc)"
+substitute "_addr=$(addr)"
 
 include "dlsPLC_valveIlk.template"
 

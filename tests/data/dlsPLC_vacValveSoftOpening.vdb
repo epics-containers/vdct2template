@@ -4,8 +4,8 @@
 #! DBDEND
 
 
-# vacuumValve.template
-#% macro, __doc__, Template database for a soft opening vacuum.
+# dlsPLC_vacValveSoftOpening.template
+#% macro, __doc__, Template database for a soft opening vacuum valve.
 #% macro, device, device name
 #% macro, vlvcc, device name of valve control crate (prefix of device name), NOTE: make sure there is a read100 component whose century (0 means 0-99) includes the object address
 #% macro, port, asyn port name of FINS driver
@@ -56,6 +56,25 @@
 #% macro, sta_label4, Label string for status value 4 (Optional - defaults to "")
 #% macro, sta_label5, Label string for status value 5 (Optional - defaults to "")
 #% macro, sta_label6, Label string for status value 6 (Optional - defaults to "")
+#% macro, sta_sv0, Optional. Defaults to MAJOR.     Alarm severity for status value 0.
+#% macro, sta_sv1, Optional. Defaults to NO_ALARM.  Alarm severity for status value 1.
+#% macro, sta_sv2, Optional. Defaults to NO_ALARM.  Alarm severity for status value 2.
+#% macro, sta_sv3, Optional. Defaults to NO_ALARM.  Alarm severity for status value 3.
+#% macro, sta_sv4, Optional. Defaults to NO_ALARM.  Alarm severity for status value 4.
+#% macro, sta_sv5, Optional. Defaults to NO_ALARM.  Alarm severity for status value 5.
+#% macro, sta_sv6, Optional. Defaults to NO_ALARM.  Alarm severity for status value 6.
+#% macro, ilksta_label0, Label string for interlock status value 0 (Optional - defaults to Failed)
+#% macro, ilksta_label1, Label string for interlock status value 1 (Optional - defaults to Run Ilks Ok)
+#% macro, ilksta_label2, Label string for interlock status value 2 (Optional - defaults to OK)
+#% macro, ilksta_label3, Label string for interlock status value 3 (Optional - defaults to Disarmed)
+#% macro, ilksta_label4, Label string for interlock status value 4 (Optional - defaults to "")
+#% macro, ilksta_label5, Label string for interlock status value 5 (Optional - defaults to "")
+#% macro, ilksta_sv0, Alarm severity for interlock status value 0 (Optional - defaults to MAJOR)
+#% macro, ilksta_sv1, Alarm severity for interlock status value 1 (Optional - defaults to NO_ALARM)
+#% macro, ilksta_sv2, Alarm severity for interlock status value 2 (Optional - defaults to NO_ALARM)
+#% macro, ilksta_sv3, Alarm severity for interlock status value 3 (Optional - defaults to NO_ALARM)
+#% macro, ilksta_sv4, Alarm severity for interlock status value 4 (Optional - defaults to NO_ALARM)
+#% macro, ilksta_sv5, Alarm severity for interlock status value 5 (Optional - defaults to NO_ALARM)
 #% macro, name, Object name and associated gui name
 #% macro, gda_name, GDA name to export to gda as if it exists
 #% macro, gda_desc, GDA description
@@ -75,6 +94,27 @@ record(ai, "$(device):HASDEBOUNCE") {
   field(PINI, "YES")
 }
 
+# The con_label and sta_label macros have no default definitions in
+# the dlsPLC_valveCtrl.vdb file, meaning they are mandatory and they
+# are declared as required inputs for the template file expansion.
+# The dlsPLC_vacValveSoftOpening.vdb file supplies them with default
+# values meaning they are expanded to be optional in the
+# dlsPLC_vacValveSoftOpening.template file.  All the other valve type
+# vdb files have to declare them.
+#
+# The ilksta_label and ilksta_sv macros appear in the dlsPLC_valveCtrl.vdb file with
+# default definitions in there, meaning they are optional and they are
+# not declared as required inputs for the expansion. The
+# dlsPLC_vacValveSoftOpening.vdb file uses a different syntax (no
+# dollar).  The end result is they are also expanded to be optional in
+# the dlsPLC_vacValveSoftOpening.template file.  It is optional for
+# the other vdb files which expand the valveCtrl vdb file.  Their
+# expanded template files will also have the macros with default
+# values.  At the time the ilksta_label definitions were added it was
+# a way make the change for the soft opening valve without having to
+# edit the vdb files for all the other valve types and preserve the
+# existing hard coded definitions.  The ilksta_sv macros followed suit.
+#
 expand("dlsPLC_valveCtrl.vdb", valveCtrl) {
   macro(con_label0, "$(con_label0=Soft Open)")
   macro(con_label1, "$(con_label1=Close)")
@@ -90,6 +130,25 @@ expand("dlsPLC_valveCtrl.vdb", valveCtrl) {
   macro(sta_label4, "$(sta_label4=)")
   macro(sta_label5, "$(sta_label5=)")
   macro(sta_label6, "$(sta_label6=)")
+  macro(sta_sv0, "$(sta_sv0=MAJOR)")
+  macro(sta_sv1, "$(sta_sv1=NO_ALARM)")
+  macro(sta_sv2, "$(sta_sv2=NO_ALARM)")
+  macro(sta_sv3, "$(sta_sv3=NO_ALARM)")
+  macro(sta_sv4, "$(sta_sv4=NO_ALARM)")
+  macro(sta_sv5, "$(sta_sv5=NO_ALARM)")
+  macro(sta_sv6, "$(sta_sv6=NO_ALARM)")
+  macro(ilksta_label0, "(ilksta_label0)")
+  macro(ilksta_label1, "(ilksta_label1)")
+  macro(ilksta_label2, "(ilksta_label2)")
+  macro(ilksta_label3, "(ilksta_label3)")
+  macro(ilksta_label4, "(ilksta_label4)")
+  macro(ilksta_label5, "(ilksta_label5)")
+  macro(ilksta_sv0, "(ilksta_sv0)")
+  macro(ilksta_sv1, "(ilksta_sv1)")
+  macro(ilksta_sv2, "(ilksta_sv2)")
+  macro(ilksta_sv3, "(ilksta_sv3)")
+  macro(ilksta_sv4, "(ilksta_sv4)")
+  macro(ilksta_sv5, "(ilksta_sv5)")
   macro(donecalc,   "((A=D)&(((A*2+1)=B)|A=2|C=0))?0:1")
 }
 
@@ -115,8 +174,6 @@ expand("dlsPLC_valveIlk.vdb", valveSoftIlk) {
   macro(ilk13, "$(softilk13=unused)")
   macro(ilk14, "$(softilk14=unused)")
   macro(ilk15, "$(softilk15=unused)")
-  macro(vlvcc, "$(vlvcc)")
-  macro(device, "$(device)")
 }
 expand("dlsPLC_valveIlk.vdb", valveFullIlk) {
   macro(DIR, "$(EMPTY=)")
@@ -140,8 +197,6 @@ expand("dlsPLC_valveIlk.vdb", valveFullIlk) {
   macro(ilk13, "$(fullilk13=unused)")
   macro(ilk14, "$(fullilk14=unused)")
   macro(ilk15, "$(fullilk15=unused)")
-  macro(vlvcc, "$(vlvcc)")
-  macro(device, "$(device)")
 }
 
 

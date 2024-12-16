@@ -304,28 +304,6 @@ record(sel, "$(device):SELRAWAIRSTA") {
   field(INPH, "$(valve8):RAWAIRSTA MS")
 }
 
-#
-# SR Valve Controller
-#
-record(bi, "$(device):SRVC") {
-  field(DESC, "SR Valve Controller")
-  field(INP, "$(device):SELSRVC MS PP")
-  field(SCAN, "1 second")
-  field(ZNAM, "No")
-  field(ONAM, "Yes")
-}
-
-record(sel, "$(device):SELSRVC") {
-  field(SELM, "High Signal")
-  field(INPA, "$(valve1):SRVC MS")
-  field(INPB, "$(valve2):SRVC MS")
-  field(INPC, "$(valve3):SRVC MS")
-  field(INPD, "$(valve4):SRVC MS")
-  field(INPE, "$(valve5):SRVC MS")
-  field(INPF, "$(valve6):SRVC MS")
-  field(INPG, "$(valve7):SRVC MS")
-  field(INPH, "$(valve8):SRVC MS")
-}
 
 ################################################################################
 # Air Pressure De-bounce Time
@@ -669,21 +647,6 @@ record(bi, "$(device):ILK15") {
   field(ONAM, "Interlock 15")
 }
 
-record(sel, "$(device):TCLOSE") {
-  field(DESC, "Time to close")
-  field(EGU, "s")
-  field(SELM, "High Signal")
-  field(INPA, "$(valve1):TCLOSE")
-  field(INPB, "$(valve2):TCLOSE")
-  field(INPC, "$(valve3):TCLOSE")
-  field(INPD, "$(valve4):TCLOSE")
-  field(INPE, "$(valve5):TCLOSE")
-  field(INPF, "$(valve6):TCLOSE")
-  field(INPG, "$(valve7):TCLOSE")
-  field(INPH, "$(valve8):TCLOSE")
-  field(SCAN, "1 second")
-  field(PREC, "1")
-}
 
 ################################################################################
 # Individual Gauge Interlocks

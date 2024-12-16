@@ -57,6 +57,7 @@ record(subArray, "$(P)$(Q):GET") {
   field(MALM, "100")
 }
 
+# % archiver 10 Monitor
 record(mbbi, "$(P)$(Q)") {
   field(INP, "$(P)$(Q):GET MS")
   field(ZRVL, "$(VAL0=0)")

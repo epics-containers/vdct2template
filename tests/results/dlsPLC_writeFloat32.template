@@ -16,14 +16,18 @@ record(waveform, "$(P)$(Q):SET") {
 # % macro, timeout, Timeout in seconds for the FINS protocol reads/writes
 # % macro, addr, DM variable of the LOWERer address of the float32
 # % macro, name, Object name and gui association name
+# % macro, drvl, Drive low limit
+# % macro, drvh, Drive high limit
 # 
 # This associates an edm screen with the template
 # % gui, $(name=), edmembed, dlsPLC_writeSingle.edl, P=$(P),Q=$(Q)
 # This makes the component icon reflect the severity
 # % gui, $(name=), sevr
-# % archiver 0.1 Monitor
+# % archiver 10 Monitor
 record(ao, "$(P)$(Q)") {
   field(PREC, "3")
   field(OUT, "$(P)$(Q):SET PP MS")
+  field(DRVL, "$(drvl=0)")
+  field(DRVH, "$(drvh=0)")
 }
 

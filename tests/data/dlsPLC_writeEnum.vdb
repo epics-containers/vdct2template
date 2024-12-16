@@ -29,8 +29,8 @@
 # 
 # 
 # This associates an edm screen with the template
-# % gui, $(name=), edmembed, dlsPLC_readEnum.edl, P=$(P),Q=$(Q)
-# % archiver 0.1 Monitor
+# % gui, $(name=), edmembed, dlsPLC_writeEnum.edl, P=$(P),Q=$(Q)
+# % archiver 10 Monitor
 record(mbbo, "$(P)$(Q)") {  
   field(DESC, "Control")
   field(DTYP, "asynInt32")

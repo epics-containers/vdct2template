@@ -31,7 +31,7 @@
 # % macro, ilk15, Interlock description 15
 # % macro, auto_reset, Set to 1 to push the reset button whenever the raw interlocks are all ok
 # % macro, EMPTY, Empty substitution to satisfy VDCT
-#
+# 
 # This associates an edm screen with the template
 # % gui, $(name=), edm, dlsPLC_interlock.edl, device=$(device)$(interlock)
 # % gui, $(name=), edmembed, dlsPLC_interlock-embed-small.edl, device=$(device)$(interlock),desc=$(desc)
@@ -64,7 +64,7 @@ record(stringout, "$(device)$(interlock):NAME") {
 
 expand("dlsPLC_valveIlk.vdb", valveIlk) {
   macro(device, "$(device)$(interlock)")
-  macro(vlvcc, "$(device)")
+  macro(vlvcc, "$(device)")  
   macro(typeprefix, ":")
   macro(DIR, "$(EMPTY=)")
   macro(ILK, "6")
@@ -87,8 +87,6 @@ expand("dlsPLC_valveIlk.vdb", valveIlk) {
   macro(ilk13, "$(ilk13=unused)")
   macro(ilk14, "$(ilk14=unused)")
   macro(ilk15, "$(ilk15=unused)")
-  macro(vlvcc, "$(vlvcc)")
-  macro(device, "$(device)")
 }
 
 #! Further lines contain data used by VisualDCT

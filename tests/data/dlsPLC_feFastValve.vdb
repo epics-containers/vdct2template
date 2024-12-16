@@ -59,12 +59,19 @@
 #% macro, sta_label4, Label string for status value 4 (Optional - defaults to Closing)
 #% macro, sta_label5, Label string for status value 5 (Optional - defaults to "")
 #% macro, sta_label6, Label string for status value 6 (Optional - defaults to "")
+#% macro, sta_sv0, Optional. Defaults to MAJOR.     Alarm severity for status value 0.
+#% macro, sta_sv1, Optional. Defaults to NO_ALARM.  Alarm severity for status value 1.
+#% macro, sta_sv2, Optional. Defaults to NO_ALARM.  Alarm severity for status value 2.
+#% macro, sta_sv3, Optional. Defaults to NO_ALARM.  Alarm severity for status value 3.
+#% macro, sta_sv4, Optional. Defaults to NO_ALARM.  Alarm severity for status value 4.
+#% macro, sta_sv5, Optional. Defaults to NO_ALARM.  Alarm severity for status value 5.
+#% macro, sta_sv6, Optional. Defaults to NO_ALARM.  Alarm severity for status value 6.
 #% macro, name, Object name and associated gui name
 #% macro, gda_name, GDA name to export to gda as if it exists
 #% macro, gda_desc, GDA description
 #% macro, desc, Box label for gui
 #% macro, EMPTY, Empty substitution to satisfy VDCT
-#% macro, showlilk, 0 (default) => Gauge, 1 => Arm
+#% macro, showilk, 0 (default) => Gauge, 1 => Arm
 #% macro, farmbits, 16 (default) Number of interlock bits for fully armed fast-valve
 #% macro, parmbits, 16 (default) Number of interlock bits for partially armed fast-valve
 # This associates an edm screen with the template
@@ -91,6 +98,13 @@ expand("dlsPLC_valveCtrl.vdb", valveCtrl) {
   macro(sta_label4, "$(sta_label4=Closing)")
   macro(sta_label5, "$(sta_label5=Open Disarmed)")
   macro(sta_label6, "$(sta_label6=Partially Armed)")
+  macro(sta_sv0, "$(sta_sv0=MAJOR)")
+  macro(sta_sv1, "$(sta_sv1=NO_ALARM)")
+  macro(sta_sv2, "$(sta_sv2=NO_ALARM)")
+  macro(sta_sv3, "$(sta_sv3=NO_ALARM)")
+  macro(sta_sv4, "$(sta_sv4=NO_ALARM)")
+  macro(sta_sv5, "$(sta_sv5=NO_ALARM)")
+  macro(sta_sv6, "$(sta_sv6=NO_ALARM)")
   macro(donecalc,   "0")
 }
 
@@ -116,8 +130,6 @@ expand("dlsPLC_valveIlk.vdb", valveIlk) {
   macro(ilk13, "$(ilk13=unused)")
   macro(ilk14, "$(ilk14=unused)")
   macro(ilk15, "$(ilk15=unused)")
-  macro(vlvcc, "$(vlvcc)")
-  macro(device, "$(device)")
 }
 
 expand("dlsPLC_fastvalveGilk.vdb", valveGilk) {
@@ -136,8 +148,8 @@ record(bi, "$(device):MODE") {
 
 # #########################################################################
 # Which interlocks to show on gui
-#
-record(bi, "$(device):SHOWILK")
+# 
+record(bi, "$(device):SHOWILK") 
   {
   field(DESC, "Which interlocks to display")
   field(DTYP, "Soft Channel")
@@ -149,15 +161,15 @@ record(bi, "$(device):SHOWILK")
 
 # #########################################################################
 # How many interlocks for Full and Partial Arm
-#
-record(ai, "$(device):FARMBITS")
+# 
+record(ai, "$(device):FARMBITS") 
   {
   field(DESC, "Number of Full Arm interlocks")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
   field(INP, "$(farmbits=16)")
   }
-record(ai, "$(device):PARMBITS")
+record(ai, "$(device):PARMBITS") 
   {
   field(DESC, "Number of Partial Arm interlocks")
   field(DTYP, "Soft Channel")
@@ -165,7 +177,7 @@ record(ai, "$(device):PARMBITS")
   field(INP, "$(parmbits=16)")
   }
 
-
+  
 # #########################################################################
 # Override :DONECALC in dlsPLC_valveCtrl.template
 # as fe fast valve does not follow standard valve CON/LASTCON/STA pattern.
@@ -174,12 +186,12 @@ record(ai, "$(device):PARMBITS")
 # continue.
 #
 # IJG: 9th Dec. 2013
-#
-#record(calcout, "$(device):DONECALC")
+# 
+#record(calcout, "$(device):DONECALC") 
 #    {
 #    field(CALC, "1=1?0:1")
 #    }
-
+  
 
 #! Further lines contain data used by VisualDCT
 #! View(0,0,1.0)

@@ -12,7 +12,7 @@
 # % gui, $(name=), edmembed, dlsPLC_writeSingle.edl, P=$(P),Q=$(Q)
 # This makes the component icon reflect the severity
 # % gui, $(name=), sevr
-# % archiver 0.1 Monitor
+# % archiver 10 Monitor
 record(ao, "$(P)$(Q)") {
   field(DESC, "Control")
   field(DTYP, "asynInt32")

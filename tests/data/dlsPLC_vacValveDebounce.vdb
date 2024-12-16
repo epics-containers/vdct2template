@@ -60,6 +60,13 @@
 #% macro, sta_label4, Label string for status value 4 (Optional - defaults to Closing)
 #% macro, sta_label5, Label string for status value 5 (Optional - defaults to "")
 #% macro, sta_label6, Label string for status value 6 (Optional - defaults to "")
+#% macro, sta_sv0, Optional. Defaults to MAJOR.     Alarm severity for status value 0.
+#% macro, sta_sv1, Optional. Defaults to NO_ALARM.  Alarm severity for status value 1.
+#% macro, sta_sv2, Optional. Defaults to NO_ALARM.  Alarm severity for status value 2.
+#% macro, sta_sv3, Optional. Defaults to NO_ALARM.  Alarm severity for status value 3.
+#% macro, sta_sv4, Optional. Defaults to NO_ALARM.  Alarm severity for status value 4.
+#% macro, sta_sv5, Optional. Defaults to NO_ALARM.  Alarm severity for status value 5.
+#% macro, sta_sv6, Optional. Defaults to NO_ALARM.  Alarm severity for status value 6.
 #% macro, name, Object name and associated gui name
 #% macro, gda_name, GDA name to export to gda as if it exists
 #% macro, gda_desc, GDA description
@@ -114,6 +121,13 @@ expand("dlsPLC_valveCtrl.vdb", valveCtrl) {
   macro(sta_label4, "$(sta_label4=Closing)")
   macro(sta_label5, "$(sta_label5=)")
   macro(sta_label6, "$(sta_label6=)")
+  macro(sta_sv0, "$(sta_sv0=MAJOR)")
+  macro(sta_sv1, "$(sta_sv1=NO_ALARM)")
+  macro(sta_sv2, "$(sta_sv2=NO_ALARM)")
+  macro(sta_sv3, "$(sta_sv3=NO_ALARM)")
+  macro(sta_sv4, "$(sta_sv4=NO_ALARM)")
+  macro(sta_sv5, "$(sta_sv5=NO_ALARM)")
+  macro(sta_sv6, "$(sta_sv6=NO_ALARM)")
   macro(donecalc, "((A=D)&(((A*2+1)=B)|A=2|C=0))?0:1")
 }
 
@@ -139,8 +153,6 @@ expand("dlsPLC_valveIlk.vdb", valveIlk) {
   macro(ilk13, "$(ilk13=unused)")
   macro(ilk14, "$(ilk14=unused)")
   macro(ilk15, "$(ilk15=unused)")
-  macro(vlvcc, "$(vlvcc)")
-  macro(device, "$(device)")
 }
 
 expand("dlsPLC_valveGilk.vdb", valveGilk) {
@@ -277,7 +289,7 @@ record(ao, "$(device):OUTTIMEOUT") {
 }
 
 # INDX calculation DM$(addr)+n. Calc the index into the century record
-#record(calcout, "$(device):INPTIMEOUTINDX")
+#record(calcout, "$(device):INPTIMEOUTINDX") 
 #  {
 #  field(CALC, "0")
 #  field(OUT, "$(device):INPTIMEOUT.INDX PP")
@@ -285,7 +297,7 @@ record(ao, "$(device):OUTTIMEOUT") {
 #  }
 
 # DX00
-record(subArray, "$(device):INPTIMEOUT")
+record(subArray, "$(device):INPTIMEOUT") 
   {
   field(DTYP, "Soft Channel")
   field(FTVL, "USHORT")
@@ -297,18 +309,18 @@ record(subArray, "$(device):INPTIMEOUT")
 # addr is the valve (device) number x10
 # the ADB and timeouts are in centuries corresponding to
 # device number (1XX, 2XX, etc.)
-#
-# Calculate the
+# 
+# Calculate the 
 # century record. Needs to be done after PINI, so note
 # the flnk
-record(scalcout, "$(device):SCALCCENTURY")
+record(scalcout, "$(device):SCALCCENTURY") 
   {
   field(CALC, "PRINTF(AA,FLOOR($(addr)/10))")
   field(AA, "$(vlvcc):DM%dXX CP MS")
   field(OUT, "$(device):INPTIMEOUT.INP CA")
   field(SCAN, "1 second")
   }
-
+  
 # Disable the scalcout record so we don't keep writing values
 record(ao, "$(device):CENTURYDIS")
   {
