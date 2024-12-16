@@ -24,7 +24,7 @@ class Expansion:
         self.vdb_path = filename.resolve()
         self.folder = folder
         self.template_path = filename.with_suffix(".template")
-        self.includes = []
+        self.includes: list[Macros] = []
         self.text = filename.read_text()
 
         Expansion.expansions.append(self)
@@ -92,6 +92,10 @@ class Expansion:
             if include.vdb_path.name not in Expansion.processed:
                 yield include.process()
                 Expansion.processed.append(include.vdb_path.name)
+            # else:
+            #     cur_macros = Expansion.processed[include.vdb_path.name]
+            #     if cur_macros != include.macros:
+            #         print(f"WARNING: inconsistent macros for {include.vdb_path.name}")
 
     @classmethod
     def validate_includes(cls) -> bool:

@@ -84,7 +84,7 @@ class Macros:
         """
         text = self.vdb_path.read_text()
         for name in self.macros.keys():
-            text = text.replace(f"${name}", f"$_{name}")
+            text = text.replace(f"$({name})", f"$(_{name})")
 
         # remove redundant VDB things
         text = DROP.sub("", text)
