@@ -1,5 +1,4 @@
 from pathlib import Path
-from typing import Dict, List
 
 from vdct2template.macros import Macros
 
@@ -14,9 +13,9 @@ class Expansion:
     """
 
     # class level list of all Expansion instances created
-    expansions: List["Expansion"] = []
+    expansions: list["Expansion"] = []
     # class level list of all vdb files processed so far
-    processed: List[str] = []
+    processed: list[str] = []
 
     def __init__(self, filename: Path, folder: Path) -> None:
         """
@@ -106,7 +105,7 @@ class Expansion:
         necessary but it is left in for now as a backup check.
         """
         warning = False
-        index: Dict[str, Macros] = {}
+        index: dict[str, Macros] = {}
 
         print()
         for expansion in cls.expansions:

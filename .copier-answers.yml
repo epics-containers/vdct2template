@@ -1,9 +1,8 @@
 # Changes here will be overwritten by Copier
-_commit: 2.1.0
+_commit: 2.6.0
 _src_path: gh:DiamondLightSource/python-copier-template
 author_email: giles.knap@diamond.ac.uk
 author_name: Giles Knap
-component_owner: group:default/sscc
 description: Converts EPICS vdct templates to pure msi compatible EPICS db templates
 distribution_name: vdct2template
 docker: false

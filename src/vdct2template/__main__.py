@@ -1,5 +1,4 @@
 from pathlib import Path
-from typing import Optional
 
 import typer
 
@@ -20,7 +19,7 @@ def version_callback(value: bool):
 
 @cli.command()
 def main(
-    version: Optional[bool] = typer.Option(
+    version: bool | None = typer.Option(
         None,
         "--version",
         callback=version_callback,
@@ -38,7 +37,7 @@ def main(
         True,
         help="Use the builder.py file to look for direct references to template files.",
     ),
-    builder: Optional[Path] = typer.Option(
+    builder: Path | None = typer.Option(
         None,
         help="Path to the builder file.",
         exists=True,
