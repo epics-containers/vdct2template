@@ -12,4 +12,4 @@ github_org: epics-containers
 package_name: vdct2template
 pypi: true
 repo_name: vdct2template
-type_checker: pyright
+type_checker: mypy
