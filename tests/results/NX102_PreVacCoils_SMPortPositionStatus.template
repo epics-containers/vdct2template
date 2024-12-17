@@ -10,22 +10,22 @@
 # The Port Position status readback.  This is actually held by the PreVac Modbus PLC as a number of Coils
 # but the DLS NX102 PLC organises them into bitflags for efficient readback interface.
 #
-record(mbbiDirect, "$(device)$(posportprefix)$(posportID):POSSTA") {
+record(mbbiDirect, "$(device)$(_posportprefix)$(posportID):POSSTA") {
   field(DESC, "Sample Manipulator Position $(posportID) Status")
   field(DTYP, "EtherIP")
-  field(INP, "@$(PORT) $(TAG).$(TAGPREFIX)$(TAGNAME)[$(TAGIDX)] B 0")
+  field(INP, "@$(_PORT) $(_TAG).$(_TAGPREFIX)$(_TAGNAME)[$(_TAGIDX)] B 0")
   field(SCAN, ".5 second")
   field(NOBT, "16")
-  field(FLNK, "$(device)$(posportprefix)$(posportID):POSSTA:FAN")
+  field(FLNK, "$(device)$(_posportprefix)$(posportID):POSSTA:FAN")
 }
 
 # Fanout to calculations dependent on the POSSTA value (the port position status).
 #
-record(fanout, "$(device)$(posportprefix)$(posportID):POSSTA:FAN") {
+record(fanout, "$(device)$(_posportprefix)$(posportID):POSSTA:FAN") {
   field(DESC, "Propagate posport$(posportID) Status")
   field(SCAN, "Passive")
-  field(LNK1, "$(device)$(posportprefix)$(posportID):SAMPLEMANIP:READY:CALC")
-  field(LNK2, "$(device)$(posportprefix)$(posportID):SAMPLEHOLDER:CALC")
+  field(LNK1, "$(device)$(_posportprefix)$(posportID):SAMPLEMANIP:READY:CALC")
+  field(LNK2, "$(device)$(_posportprefix)$(posportID):SAMPLEHOLDER:CALC")
 }
 
 # Records DESC0...15 to set labels to display against the position status word.
@@ -34,145 +34,145 @@ record(fanout, "$(device)$(posportprefix)$(posportID):POSSTA:FAN") {
 # become optional with defaults in the higher level template.
 #
 # Label for bit 0 of the position status word.
-record(stringout, "$(device)$(posportprefix)$(posportID):DESC0") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):DESC0") {
   field(DESC, "Description of bit 0 status.")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
-  field(VAL, "$(desc_label0)")
+  field(VAL, "$(_desc_label0)")
 }
 
 # Label for bit 1 of the position status word.
-record(stringout, "$(device)$(posportprefix)$(posportID):DESC1") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):DESC1") {
   field(DESC, "Description of bit 1 status.")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
-  field(VAL, "$(desc_label1)")
+  field(VAL, "$(_desc_label1)")
 }
 
 # Label for bit 2 of the position status word.
-record(stringout, "$(device)$(posportprefix)$(posportID):DESC2") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):DESC2") {
   field(DESC, "Description of bit 2 status.")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
-  field(VAL, "$(desc_label2)")
+  field(VAL, "$(_desc_label2)")
 }
 
 # Label for bit 3 of the position status word.
-record(stringout, "$(device)$(posportprefix)$(posportID):DESC3") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):DESC3") {
   field(DESC, "Description of bit 3 status.")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
-  field(VAL, "$(desc_label3)")
+  field(VAL, "$(_desc_label3)")
 }
 
 # Label for bit 4 of the position status word.
-record(stringout, "$(device)$(posportprefix)$(posportID):DESC4") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):DESC4") {
   field(DESC, "Description of bit 4 status.")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
-  field(VAL, "$(desc_label4)")
+  field(VAL, "$(_desc_label4)")
 }
 
 # Label for bit 5 of the position status word.
-record(stringout, "$(device)$(posportprefix)$(posportID):DESC5") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):DESC5") {
   field(DESC, "Description of bit 5 status.")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
-  field(VAL, "$(desc_label5)")
+  field(VAL, "$(_desc_label5)")
 }
 
 # Label for bit 6 of the position status word.
-record(stringout, "$(device)$(posportprefix)$(posportID):DESC6") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):DESC6") {
   field(DESC, "Description of bit 6 status.")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
-  field(VAL, "$(desc_label6)")
+  field(VAL, "$(_desc_label6)")
 }
 
 # Label for bit 7 of the position status word.
-record(stringout, "$(device)$(posportprefix)$(posportID):DESC7") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):DESC7") {
   field(DESC, "Description of bit 7 status.")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
-  field(VAL, "$(desc_label7)")
+  field(VAL, "$(_desc_label7)")
 }
 
 # Label for bit 8 of the position status word.
-record(stringout, "$(device)$(posportprefix)$(posportID):DESC8") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):DESC8") {
   field(DESC, "Description of bit 8 status.")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
-  field(VAL, "$(desc_label8)")
+  field(VAL, "$(_desc_label8)")
 }
 
 # Label for bit 9 of the position status word.
-record(stringout, "$(device)$(posportprefix)$(posportID):DESC9") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):DESC9") {
   field(DESC, "Description of bit 9 status.")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
-  field(VAL, "$(desc_label9)")
+  field(VAL, "$(_desc_label9)")
 }
 
 # Label for bit 10 of the position status word.
-record(stringout, "$(device)$(posportprefix)$(posportID):DESC10") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):DESC10") {
   field(DESC, "Description of bit 10 status.")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
-  field(VAL, "$(desc_label10)")
+  field(VAL, "$(_desc_label10)")
 }
 
 # Label for bit 11 of the position status word.
-record(stringout, "$(device)$(posportprefix)$(posportID):DESC11") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):DESC11") {
   field(DESC, "Description of bit 11 status.")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
-  field(VAL, "$(desc_label11)")
+  field(VAL, "$(_desc_label11)")
 }
 
 # Label for bit 12 of the position status word.
-record(stringout, "$(device)$(posportprefix)$(posportID):DESC12") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):DESC12") {
   field(DESC, "Description of bit 12 status.")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
-  field(VAL, "$(desc_label12)")
+  field(VAL, "$(_desc_label12)")
 }
 
 # Label for bit 13 of the position status word.
-record(stringout, "$(device)$(posportprefix)$(posportID):DESC13") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):DESC13") {
   field(DESC, "Description of bit 13 status.")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
-  field(VAL, "$(desc_label13)")
+  field(VAL, "$(_desc_label13)")
 }
 
 # Label for bit 14 of the position status word.
-record(stringout, "$(device)$(posportprefix)$(posportID):DESC14") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):DESC14") {
   field(DESC, "Description of bit 14 status.")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
-  field(VAL, "$(desc_label14)")
+  field(VAL, "$(_desc_label14)")
 }
 
 # Label for bit 15 of the position status word.
-record(stringout, "$(device)$(posportprefix)$(posportID):DESC15") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):DESC15") {
   field(DESC, "Description of bit 15 status.")
   field(DTYP, "Soft Channel")
   field(PINI, "YES")
-  field(VAL, "$(desc_label15)")
+  field(VAL, "$(_desc_label15)")
 }
 
 # Long description of the position port.
-record(stringout, "$(device)$(posportprefix)$(posportID):LONGDESC") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):LONGDESC") {
   field(DESC, "Position port $(posportID) description")
   field(PINI, "YES")
-  field(VAL, "$(longdesc)")
+  field(VAL, "$(_longdesc)")
 }
 
 # Short description of the position port.
-record(stringout, "$(device)$(posportprefix)$(posportID):SHORTDESC") {
+record(stringout, "$(device)$(_posportprefix)$(posportID):SHORTDESC") {
   field(DESC, "Posport$(posportID) short description")
   field(PINI, "YES")
-  field(VAL, "$(shortdesc)")
+  field(VAL, "$(_shortdesc)")
 }
 
 #
@@ -180,7 +180,7 @@ record(stringout, "$(device)$(posportprefix)$(posportID):SHORTDESC") {
 # a string in the name of a record.  It was originally a stringout
 # but now it has to be an integer as it gets used in calculations.
 #
-record(ao, "$(device)$(posportprefix)$(posportID):POSPORTID") {
+record(ao, "$(device)$(_posportprefix)$(posportID):POSPORTID") {
   field(DESC, "Posport$(posportID) ID number")
   field(PINI, "YES")
   field(VAL, "$(posportID)")
@@ -207,13 +207,13 @@ record(ao, "$(device)$(posportprefix)$(posportID):POSPORTID") {
 #
 # Writes the result to the fixed ID port record in the NX102_PreVacCoils_SMStatus template.
 #
-record(calcout, "$(device)$(posportprefix)$(posportID):SAMPLEMANIP:READY:CALC") {
+record(calcout, "$(device)$(_posportprefix)$(posportID):SAMPLEMANIP:READY:CALC") {
   field(DESC, "Posport$(posportID) SM ready calculation")
   field(SCAN, "Passive")
-  field(INPA, "$(smready_bitno)")
-  field(INPB, "$(device)$(posportprefix)$(posportID):POSSTA")
+  field(INPA, "$(_smready_bitno)")
+  field(INPB, "$(device)$(_posportprefix)$(posportID):POSSTA")
   field(CALC, "(B>>A)&1")
-  field(OUT, "$(device)$(posportprefix)$(posportID):SAMPLEMANIP:READY PP")
+  field(OUT, "$(device)$(_posportprefix)$(posportID):SAMPLEMANIP:READY PP")
 }
 
 #
@@ -231,11 +231,11 @@ record(calcout, "$(device)$(posportprefix)$(posportID):SAMPLEMANIP:READY:CALC") 
 # Shift the status record by bitno places to get it into position and bitmask it off with a 1.
 # Writes the result to the fixed ID port record in the Status template.
 #
-record(calcout, "$(device)$(posportprefix)$(posportID):SAMPLEHOLDER:CALC") {
+record(calcout, "$(device)$(_posportprefix)$(posportID):SAMPLEHOLDER:CALC") {
   field(DESC, "Posport$(posportID) sample calculation")
   field(SCAN, "Passive")
-  field(INPA, "$(sampleholder_bitno)")
-  field(INPB, "$(device)$(posportprefix)$(posportID):POSSTA")
+  field(INPA, "$(_sampleholder_bitno)")
+  field(INPB, "$(device)$(_posportprefix)$(posportID):POSSTA")
   field(CALC, "(B>>A)&1")
-  field(OUT, "$(device)$(posportprefix)$(posportID):SAMPLEHOLDER:IN_CHAMBER PP")
+  field(OUT, "$(device)$(_posportprefix)$(posportID):SAMPLEHOLDER:IN_CHAMBER PP")
 }

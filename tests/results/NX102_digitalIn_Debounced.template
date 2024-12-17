@@ -27,4 +27,3 @@ record(mbbiDirect, "$(device):DBBIT") {
   field(SCAN, ".5 second")
   field(NOBT, "16")
 }
-

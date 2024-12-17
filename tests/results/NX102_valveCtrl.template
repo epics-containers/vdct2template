@@ -14,14 +14,14 @@
 record(mbbo, "$(device):CON") {
   field(DESC, "Control")
   field(DTYP, "Soft Channel")
-  field(ZRST, "$(con_label0)")
-  field(ONST, "$(con_label1)")
-  field(TWST, "$(con_label2)")
-  field(THST, "$(con_label3)")
-  field(FRST, "$(con_label4)")
-  field(FVST, "$(con_label5)")
-  field(SXST, "$(con_label6)")
-  field(SVST, "$(con_label7)")
+  field(ZRST, "$(_con_label0)")
+  field(ONST, "$(_con_label1)")
+  field(TWST, "$(_con_label2)")
+  field(THST, "$(_con_label3)")
+  field(FRST, "$(_con_label4)")
+  field(FVST, "$(_con_label5)")
+  field(SXST, "$(_con_label6)")
+  field(SVST, "$(_con_label7)")
   field(VAL, "0")
   field(OUT, "$(device):CALCCON.A PP")
 }
@@ -46,7 +46,7 @@ record(bi, "$(device):OPENALLOWED") {
 
 record(stringout, "$(device):WHYLOCKED") {
   field(DESC, "Reason why device is locked")
-  field(VAL, "$(whylocked)")
+  field(VAL, "$(_whylocked)")
 }
 
 ## Pass all requests through to the PLC unless it is an open request and 
@@ -64,7 +64,7 @@ record(calcout, "$(device):CALCCON") {
 record(ao, "$(device):ACTUALCON") {
   field(DESC, "Control")
   field(DTYP, "EtherIP")
-  field(OUT, "@$(PORT) $(TAG).Control[$(TAGIDX)] S .2")
+  field(OUT, "@$(_PORT) $(_TAG).Control[$(_TAGIDX)] S .2")
   field(PRIO, "HIGH")
   field(FLNK, "$(device):SETBUSY")
 }
@@ -87,7 +87,7 @@ record(calcout, "$(device):DONECALC") {
   field(INPB, "$(device):STA CPP MS")
   field(INPC, "$(device):ILKSTA CPP MS")
   field(INPD, "$(device):LASTCON CPP MS")
-  field(CALC, "$(donecalc)")
+  field(CALC, "$(_donecalc)")
   field(OOPT, "When Zero")
   field(DOPT, "Use CALC")
   field(OUT, "$(device):BUSY CA NMS")
@@ -97,14 +97,14 @@ record(calcout, "$(device):DONECALC") {
 record(mbbi, "$(device):LASTCON") {
   field(DESC, "Control Readback")
   field(DTYP, "Soft Channel")
-  field(ZRST, "$(con_label0)")
-  field(ONST, "$(con_label1)")
-  field(TWST, "$(con_label2)")
-  field(THST, "$(con_label3)")
-  field(FRST, "$(con_label4)")
-  field(FVST, "$(con_label5)")
-  field(SXST, "$(con_label6)")
-  field(SVST, "$(con_label7)")
+  field(ZRST, "$(_con_label0)")
+  field(ONST, "$(_con_label1)")
+  field(TWST, "$(_con_label2)")
+  field(THST, "$(_con_label3)")
+  field(FRST, "$(_con_label4)")
+  field(FVST, "$(_con_label5)")
+  field(SXST, "$(_con_label6)")
+  field(SVST, "$(_con_label7)")
   field(INP, "$(device):LASTCON:INP")
 }
 
@@ -112,7 +112,7 @@ record(mbbi, "$(device):LASTCON") {
 record(ai, "$(device):LASTCON:INP") {
   field(DESC, "Control Readback Raw")
   field(DTYP, "EtherIP")
-  field(INP, "@$(PORT) $(TAG).Last_Control[$(TAGIDX)]")
+  field(INP, "@$(_PORT) $(_TAG).Last_Control[$(_TAGIDX)]")
   field(SCAN, ".2 second")
   field(FLNK, "$(device):LASTCON")
 }
@@ -125,22 +125,22 @@ record(ai, "$(device):LASTCON:INP") {
 record(mbbi, "$(device):ILKSTA") {
   field(DESC, "Interlock Status")
   field(DTYP, "Soft Channel")
-  field(ZRST, "$(ilksta_label0)")
-  field(ONST, "$(ilksta_label1)")
-  field(TWST, "$(ilksta_label2)")
-  field(THST, "$(ilksta_label3)")
-  field(FRST, "$(ilksta_label4)")
-  field(FVST, "$(ilksta_label5)")
-  field(SXST, "$(ilksta_label6)")
-  field(SVST, "$(ilksta_label7)")
-  field(ZRSV, "$(ilksta_sv0)")
-  field(ONSV, "$(ilksta_sv1)")
-  field(TWSV, "$(ilksta_sv2)")
-  field(THSV, "$(ilksta_sv3)")
-  field(FRSV, "$(ilksta_sv4)")
-  field(FVSV, "$(ilksta_sv5)")
-  field(SXSV, "$(ilksta_sv6)")
-  field(SVSV, "$(ilksta_sv7)")
+  field(ZRST, "$(_ilksta_label0)")
+  field(ONST, "$(_ilksta_label1)")
+  field(TWST, "$(_ilksta_label2)")
+  field(THST, "$(_ilksta_label3)")
+  field(FRST, "$(_ilksta_label4)")
+  field(FVST, "$(_ilksta_label5)")
+  field(SXST, "$(_ilksta_label6)")
+  field(SVST, "$(_ilksta_label7)")
+  field(ZRSV, "$(_ilksta_sv0)")
+  field(ONSV, "$(_ilksta_sv1)")
+  field(TWSV, "$(_ilksta_sv2)")
+  field(THSV, "$(_ilksta_sv3)")
+  field(FRSV, "$(_ilksta_sv4)")
+  field(FVSV, "$(_ilksta_sv5)")
+  field(SXSV, "$(_ilksta_sv6)")
+  field(SVSV, "$(_ilksta_sv7)")
   field(NOBT, "3")
   field(INP, "$(device):ILKSTA:INP")
 }
@@ -149,7 +149,7 @@ record(mbbi, "$(device):ILKSTA") {
 record(ai, "$(device):ILKSTA:INP") {
   field(DESC, "Interlock status")
   field(DTYP, "EtherIP")
-  field(INP, "@$(PORT) $(TAG).ILK_Status[$(TAGIDX)]")
+  field(INP, "@$(_PORT) $(_TAG).ILK_Status[$(_TAGIDX)]")
   field(SCAN, ".2 second")
   field(FLNK, "$(device):ILKSTA")
 }
@@ -164,22 +164,22 @@ record(ai, "$(device):ILKSTA:INP") {
 record(mbbi, "$(device):STA") {
   field(DESC, "Status")
   field(DTYP, "Soft Channel")
-  field(ZRST, "$(sta_label0)")
-  field(ONST, "$(sta_label1)")
-  field(TWST, "$(sta_label2)")
-  field(THST, "$(sta_label3)")
-  field(FRST, "$(sta_label4)")
-  field(FVST, "$(sta_label5)")
-  field(SXST, "$(sta_label6)")
-  field(SVST, "$(sta_label7)")
-  field(ZRSV, "$(sta_sv0)")
-  field(ONSV, "$(sta_sv1)")
-  field(TWSV, "$(sta_sv2)")
-  field(THSV, "$(sta_sv3)")
-  field(FRSV, "$(sta_sv4)")
-  field(FVSV, "$(sta_sv5)")
-  field(SXSV, "$(sta_sv6)")
-  field(SVSV, "$(sta_sv7)")
+  field(ZRST, "$(_sta_label0)")
+  field(ONST, "$(_sta_label1)")
+  field(TWST, "$(_sta_label2)")
+  field(THST, "$(_sta_label3)")
+  field(FRST, "$(_sta_label4)")
+  field(FVST, "$(_sta_label5)")
+  field(SXST, "$(_sta_label6)")
+  field(SVST, "$(_sta_label7)")
+  field(ZRSV, "$(_sta_sv0)")
+  field(ONSV, "$(_sta_sv1)")
+  field(TWSV, "$(_sta_sv2)")
+  field(THSV, "$(_sta_sv3)")
+  field(FRSV, "$(_sta_sv4)")
+  field(FVSV, "$(_sta_sv5)")
+  field(SXSV, "$(_sta_sv6)")
+  field(SVSV, "$(_sta_sv7)")
   field(INP, "$(device):STA:INP")
 }
 
@@ -187,7 +187,7 @@ record(mbbi, "$(device):STA") {
 record(ai, "$(device):STA:INP") {
   field(DESC, "Interlock status")
   field(DTYP, "EtherIP")
-  field(INP, "@$(PORT) $(TAG).Status[$(TAGIDX)]")
+  field(INP, "@$(_PORT) $(_TAG).Status[$(_TAGIDX)]")
   field(SCAN, ".2 second")
   field(FLNK, "$(device):STA")
 }
@@ -211,7 +211,7 @@ record(ai, "$(device):OPS") {
   field(HSV, "MINOR")
   field(LSV, "MINOR")
   field(LLSV, "MAJOR")
-  field(INP, "@$(PORT) $(TAG).Operations_Count[$(TAGIDX)]")
+  field(INP, "@$(_PORT) $(_TAG).Operations_Count[$(_TAGIDX)]")
 }
 
 # #########################################################################
@@ -223,7 +223,7 @@ record(mbbiDirect, "$(device):MODSTA") {
   field(DESC, "Mode")
   field(DTYP, "EtherIP")
   field(SCAN, "1 second")
-  field(INP, "@$(PORT) $(TAG).Service_Mode[$(TAGIDX)] B 0")
+  field(INP, "@$(_PORT) $(_TAG).Service_Mode[$(_TAGIDX)] B 0")
   field(NOBT, "16")
 }
 
@@ -242,7 +242,7 @@ record(ai, "$(device):INTERFACE:RAW") {
   field(SCAN, "10 second")
   field(DTYP, "EtherIP")
   field(FLNK, "$(device):INTERFACE")
-  field(INP, "@$(PORT) $(TAG).Interfc[$(TAGIDX)]")
+  field(INP, "@$(_PORT) $(_TAG).Interfc[$(_TAGIDX)]")
 }
 
 record(busy, "$(device):BUSY") {
