@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from .expansion import Expansion
-from .regex import DROP
+from .regex import DROP, TEMPLATE
 
 
 def convert(folder: Path, builder_txt: str):
@@ -35,7 +35,10 @@ def convert(folder: Path, builder_txt: str):
         template_path = path.with_suffix(".template")
 
         text = path.read_text()
+        # remove VDCT comments
         text = DROP.sub("", text)
+        # remove any remaining empty template entries
+        text = TEMPLATE.sub("", text)
 
         print(f"writing flat {file}")
         template_path.write_text(text)
