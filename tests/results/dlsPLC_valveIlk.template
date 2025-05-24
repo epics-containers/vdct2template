@@ -1,7 +1,3 @@
-
-
-
-
 # % archiver 10 Monitor
 # % controldesk Latched Interlock Status smon
 record(mbbiDirect, "$(_device)$(_typeprefix)$(_DIR)ILK") {

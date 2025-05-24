@@ -1,5 +1,3 @@
-
-
 # vacuumPump.template
 #% macro, __doc__, Template database for a vacuum Pump without debounce or raw air records
 #% macro, device, device name

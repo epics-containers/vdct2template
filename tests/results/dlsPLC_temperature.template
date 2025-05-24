@@ -1,5 +1,3 @@
-
-
 # % macro, __doc__, Template database for an individual temperature on a
 # temperature PLC. Requires an instance of dlsPLC_read100 for century=1 and
 # century=2

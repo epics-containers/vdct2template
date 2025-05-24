@@ -1,5 +1,3 @@
-
-
 #% macro, __doc__, Template that reads 100 blocks of memory into records so 
 # that it can be used in various templates.
 #% macro, device, Device prefix
@@ -16,7 +14,3 @@ record(waveform, "$(device):DM$(century)XX") {
   field(FTVL, "USHORT")
   field(PRIO, "MEDIUM")
 }
-
-template() {
-
-  }

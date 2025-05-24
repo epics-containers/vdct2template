@@ -1,4 +1,3 @@
-
 # % macro, __doc__, Template that reads software version from a PLC. 
 # % macro, device, Device prefix
 record(subArray, "$(device):INPSOFT") {

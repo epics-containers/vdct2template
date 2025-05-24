@@ -1,4 +1,3 @@
-
 # NX102_robotDXrealR.template
 
 #% macro, __doc__, Template database for reading a real value for a DX200 controller variable through NX102 PLC

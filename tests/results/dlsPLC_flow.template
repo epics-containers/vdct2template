@@ -1,5 +1,3 @@
-
-
 # % macro, __doc__, This template defines a bi records for representing low and lolo
 # water flow switched read from MPS RIO boxes. Low switches will be read from
 # their normal DM variable (E.g. DM4), Lolo switches from the relevant interlock

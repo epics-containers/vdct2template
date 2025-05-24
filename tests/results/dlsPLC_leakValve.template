@@ -1,5 +1,3 @@
-
-
 # leakValve.template
 #% macro, __doc__, Template database for a vacuum leak valve without debounce or raw air records
 #% macro, device, device name

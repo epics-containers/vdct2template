@@ -1,5 +1,3 @@
-
-
 # NX102_robotDXstatus.template
 #% macro, __doc__, Template database for reading the status of a DX200 controller through NX102 PLC
 #% macro, name, Object name and gui association name

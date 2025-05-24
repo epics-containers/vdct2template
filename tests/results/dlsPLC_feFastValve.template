@@ -1,5 +1,3 @@
-
-
 # dlsPLC_feFastValve.template
 #% macro, __doc__, Template database for a front-end fast valve without debounce or raw air records
 #% macro, device, device name
@@ -205,4 +203,3 @@ record(ai, "$(device):PARMBITS")
 #    {
 #    field(CALC, "1=1?0:1")
 #    }
-  

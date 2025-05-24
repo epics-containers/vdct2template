@@ -1,5 +1,3 @@
-
-
 # % macro, __doc__, Write an int32 value into a PLC DM variable
 # % macro, P, device prefix
 # % macro, Q, device suffix

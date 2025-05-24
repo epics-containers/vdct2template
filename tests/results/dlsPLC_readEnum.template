@@ -1,5 +1,3 @@
-
-
 # % macro, __doc__, Read the Enum value stored in a DM variable in a PLC
 # % macro, P, device prefix
 # % macro, Q, device suffix

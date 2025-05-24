@@ -1,4 +1,3 @@
-
 # % macro, __doc__, Template allowing override of individual interlock bits
 # % macro, P, device prefix
 # % macro, DESC, Description (e.g. DCM piezo override)
@@ -10,9 +9,7 @@
 # % macro, outaddr, Output address (inaddr is outaddr + 1)
 # % macro, port, The FINS port
 
-template() {
 
-    }
 
 record(longout, "$(P):OUTPUT") {
   field(DESC, "Actual output to PLC")

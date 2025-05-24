@@ -1,5 +1,3 @@
-
-
 # % macro, __doc__, Template showing the status of various MPS interlocks in
 # a PLC. Requires dlsPLC_read100 for any century used
 # % macro, device, device prefix

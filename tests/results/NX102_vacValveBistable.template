@@ -1,5 +1,3 @@
-
-
 # NX102_vacValveBistable.vdb is expanded to NX102_vacValveBistable.template by flatdb.
 #
 #% macro, __doc__, Template database for a bistable vacuum valve without debounce or raw air records.  It has different interlocks for opening and closing it.

@@ -1,4 +1,3 @@
-
 # % macro, __doc__, Template allowing overrideRequestIndividual instances to be created
 # % macro, P, device prefix. This must match a dlsPLC_read100.template device macro
 # % macro, Q, device suffix

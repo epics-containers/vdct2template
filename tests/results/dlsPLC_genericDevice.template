@@ -1,5 +1,3 @@
-
-
 # dlsPLC_genericDevice.template
 #% macro, __doc__, Template5B database for a vacuum valve without debounce or raw air records
 #% macro, device, device name

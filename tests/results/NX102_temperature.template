@@ -1,5 +1,3 @@
-
-
 # NX102_temperature.vdb is expanded to NX102_temperature.template by flatdb.
 #
 #% macro, __doc__, Template database for an individual temperature on an Omron NX102 PLC.

@@ -17,11 +17,11 @@ def convert(folder: Path, builder_txt: str):
         expansion = Expansion(target, folder)
         if expansion.parse_expands() > 0:
             print(f"writing expansion {expansion.template_path.name}")
-            expansion.template_path.write_text(expansion.text)
+            expansion.template_path.write_text(expansion.text.strip() + "\n")
 
             for file, text in expansion.process_includes():
                 print(f"writing template {file.name}")
-                file.write_text(text)
+                file.write_text(text.strip() + "\n")
                 if file.name in builder_txt:
                     warning = True
                     print(f"  WARNING: direct reference from builder.py to {file.name}")
@@ -41,7 +41,7 @@ def convert(folder: Path, builder_txt: str):
         text = TEMPLATE.sub("", text)
 
         print(f"writing flat {file}")
-        template_path.write_text(text)
+        template_path.write_text(text.strip() + "\n")
 
     # give warnings if there are inconsistent macro substitutions
     # NOTE: process_includes() should have already fixed this!

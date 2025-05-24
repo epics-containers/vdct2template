@@ -1,5 +1,3 @@
-
-
 # dlsPLC_feTemperature.template
 #% macro, __doc__, Template database for an individual temperature on a front end
 # temperature PLC.

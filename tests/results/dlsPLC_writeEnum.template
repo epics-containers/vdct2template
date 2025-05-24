@@ -1,4 +1,3 @@
-
 # % macro, __doc__, Write the Enum value into a DM variable in a PLC
 # % macro, P, device prefix
 # % macro, Q, device suffix

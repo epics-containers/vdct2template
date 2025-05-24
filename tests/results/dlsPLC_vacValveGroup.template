@@ -1,5 +1,3 @@
-
-
 # vacuumValveGroup.template
 #% macro, __doc__, Template database for a group of up to 8 vacuum valves
 # Pete Owens - 3/5/05

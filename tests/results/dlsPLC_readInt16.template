@@ -1,5 +1,3 @@
-
-
 # % macro, __doc__, Read the Int16 value stored in 1 DM variables in a PLC
 # % macro, P, device prefix
 # % macro, Q, device suffix

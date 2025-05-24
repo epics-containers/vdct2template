@@ -1,5 +1,3 @@
-
-
 #% macro, __doc__, Switch on or off an RGA where the PLC code has been setup to switch when 1 is written to a particular DM variable
 #% macro, device, device name
 #% macro, addr_read, DM address to read for rga switch status

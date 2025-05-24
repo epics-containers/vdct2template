@@ -1,5 +1,3 @@
-
-
 record(waveform, "$(P)$(Q):SET") {
   field(DESC, "Set 1 float word")
   field(SCAN, "Passive")

@@ -1,5 +1,3 @@
-
-
 # dlsPLC_vacValveSoftOpening.template
 #% macro, __doc__, Template database for a soft opening vacuum valve.
 #% macro, device, device name

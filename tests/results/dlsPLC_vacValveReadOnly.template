@@ -1,5 +1,3 @@
-
-
 # vacuumValveReadOnly_asyn.template
 #
 #% macro, __doc__, Template for read only vacuum valves - manual valves with limit switches read back by valve controller PLC so their state is known, but control is not available.  

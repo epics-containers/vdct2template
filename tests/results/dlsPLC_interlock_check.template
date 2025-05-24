@@ -1,9 +1,3 @@
-
-
-
-
-
-
 record(calc, "$(device):ILK:CHECK$(_N)") {
   field(DESC, "Calculate if interlock $(_N) is OK")
   field(CALC, "A = B")

@@ -1,5 +1,3 @@
-
-
 #% macro, __doc__, Power cycle an RGA where the PLC code has been setup to power cycle when 1 is written to a particular DM variable
 #% macro, device, device name
 #% macro, addr, DM variable to write to to reboot rga

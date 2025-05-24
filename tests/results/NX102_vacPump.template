@@ -1,4 +1,3 @@
-
 # NX102_vacPump.vdb is expanded to NX102_vacPump.template by flatdb.
 #
 #% macro, __doc__, Template for a NX PLC to control and interlock vacuum pumps of various kinds, e.g. Scroll and Turbo pumps.  NOTE: Covers basic commonly required control only and excludes pump make and model or application specific control and monitoring of the pump which might be available and also be required typically via serial control, for example settings configuration or service period information.

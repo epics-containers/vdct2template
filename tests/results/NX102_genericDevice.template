@@ -1,4 +1,3 @@
-
 # NX102_genericDevice.vdb is expanded to NX102_genericDevice.template with flatdb
 #
 #% macro, __doc__, Template database for control and interlock of a non-specific device.

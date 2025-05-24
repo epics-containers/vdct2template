@@ -1,4 +1,3 @@
-
 # NX102_interlock.vdb expanded to NX102_interlock.template by flatdb.
 # % macro, __doc__, Template showing the status of various MPS interlocks in
 # an Omron NX102 PLC.

@@ -1,4 +1,3 @@
-
 # NX102_digitalIn_Debounced.template
 #% macro, __doc__, Template database reading debounced inputs from word
 # temperature PLC.

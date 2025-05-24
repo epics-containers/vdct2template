@@ -1,4 +1,3 @@
-
 # NX102_digitalIn.template
 #% macro, __doc__, Template database for reading inputs from a word
 # temperature PLC.

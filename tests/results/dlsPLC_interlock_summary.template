@@ -1,5 +1,3 @@
-
-
 # dlsPLC_interlockSummary.template
 #% macro, __doc__, Template database for a summary PV of up to 24 interlocks
 #% macro, device, device name

@@ -1,5 +1,3 @@
-
-
 # vacuumValve.template
 #% macro, __doc__, Template database for a vacuum valve with different interlocks for open and close operations
 #% macro, device, device name
