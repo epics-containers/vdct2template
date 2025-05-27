@@ -70,7 +70,7 @@ class Expansion:
         by adding in a self referencing macro for any missing ones out of the list
         of all macros passed by all instances of such an expansion. (OMLGG!)
         """
-        vdb_list = self.folder.glob("*.vdb")
+        vdb_list = sorted(self.folder.glob("*.vdb"))
         for vdb in vdb_list:
             vdb_text = vdb.read_text()
             expands = EXPAND.findall(vdb_text)

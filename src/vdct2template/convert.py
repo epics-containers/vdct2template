@@ -9,7 +9,7 @@ def convert(folder: Path, builder_txt: str):
     function to oversee conversion of a set of VDB files to template files.
     """
     warning = False
-    targets = list(folder.glob("*.vdb"))
+    targets = sorted(folder.glob("*.vdb"))
 
     print(f"converting vdb files in {folder}\n ...")
 
