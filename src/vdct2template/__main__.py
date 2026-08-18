@@ -71,7 +71,8 @@ def main(
     """
 
     if use_builder:
-        builder = builder or Path(folder.parent.parent / "etc" / "builder.py")
+        builder = builder or Path(folder / "etc" / "builder.py")
+        typer.echo(f"builder.py file found: {builder}")
         builder_txt = builder.read_text()
     else:
         builder_txt = ""

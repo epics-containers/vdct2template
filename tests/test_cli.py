@@ -34,6 +34,6 @@ def test_convert():
         template = vdb.with_suffix(".template")
         valid_template = results / template.name
         assert template.exists(), f"{vdb.name} not converted"
-        assert (
-            template.read_text().strip() == valid_template.read_text().strip()
-        ), f"{vdb.name} not conversion does not match expected result"
+        assert template.read_text().strip() == valid_template.read_text().strip(), (
+            f"{vdb.name} not conversion does not match expected result"
+        )
