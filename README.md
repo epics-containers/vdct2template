@@ -11,8 +11,9 @@ This tool is designed to modify an EPICS support module in order to remove
 its dependency on the vdct tool. This is useful for support modules that we
 want to build with the upstream vanilla EPICS base that does not include vdct.
 
-Source          | <https://github.com/epics-containers/vdct2template>
+What            | Where
 :---:           | :---:
+Source          | <https://github.com/epics-containers/vdct2template>
 PyPI            | `pip install vdct2template`
 Releases        | <https://github.com/epics-containers/vdct2template/releases>
 
