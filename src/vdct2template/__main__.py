@@ -75,16 +75,15 @@ def main(
     if use_builder:
         try:
             builder = builder or Path(folder.parent.parent / "etc" / "builder.py")
-            typer.echo(f"builder.py file found: {builder}")
-
             builder_txt = builder.read_text()
+            typer.echo(f"builder.py file found: {builder}")
 
         except FileNotFoundError:
             typer.echo(
                 "ERROR: Could not find builder.py."
                 " Did you run this pointing to the folder of vdb files to convert?"
             )
-            typer.Exit()
+            typer.Exit(code=1)
 
     convert(folder, builder_txt)
 
