@@ -83,7 +83,7 @@ def main(
                 "ERROR: Could not find builder.py."
                 " Did you run this pointing to the folder of vdb files to convert?"
             )
-            typer.Exit(code=1)
+            exit()
 
     convert(folder, builder_txt)
 
